@@ -4,6 +4,20 @@
   "description": "Resume to website in less than a minute!",
   "license": "MIT",
   "private": true,
+  "keywords": [
+    "typesctipt",
+    "javascript",
+    "next.js",
+    "react",
+    "tailwindcss",
+    "shadcn/ui",
+    "vercel",
+    "aws-s3",
+    "upstash-redis",
+    "tanstack-query",
+    "clerk",
+    "togehter.ai"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prebuild": "pnpm run lint",

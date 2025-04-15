@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuikRes
 
-## Getting Started
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/egarrisxn/quikres) ![GitHub last commit](https://img.shields.io/github/last-commit/egarrisxn/quikres)
 
-First, run the development server:
+![quikres](https://github.com/user-attachments/assets/81746be9-cdf6-4d1b-9c70-053263e66c1d)
+
+## 🚀 What is QuikRes?
+
+**QuikRes** lets you turn your resume into a beautiful, personal website — in under a minute. No paywalls. No ads. Just fast, free resume-to-site magic.
+
+## 🛠️ Tech Stack
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **TanStack Query**
+- **AWS S3**
+- **Upstash Redis**
+- **Clerk Authentication**
+- **Together.ai**
+- **Vercel AI SDK**
+- **Vercel Deployment**
+- More coming soon...
+
+
+## ⚙️ Getting Started
+
+1. **Clone the Repo**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/egarrisxn/quikres.git
+cd quikres
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Set Up Required Accounts**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Together.ai - for LLM
+- Upstash - for Redis database
+- AWS - for S3 bucket
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. **Configure Environment Variables**
 
-## Learn More
+- Create a `.env` or `.env.local` file
+- Add your API keys, secrets, etc
 
-To learn more about Next.js, take a look at the following resources:
+4. **Install Dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Run the App Locally**
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚦 Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Create an Account**
+
+- Sign up on the site using **Clerk** authentication.
+
+2. **Upload Your Resume (PDF)**
+
+- Upload your resume through the dashboard.
+- It’s securely uploaded to an **AWS S3 BUCKET**.
+
+3. **AI Processing**
+
+- Your resume is sent out for a quick processing via **Together.ai**.
+- The model extracts structured data (e.g. work experience, skills, education) in JSON format.
+
+4. **Instant Website Generation**
+
+- A personalized, responsive website is generated from your resume content.
+- View, customize, and publish your site instantly with a unique dynamic route.
+
+## 🚀 Deploying
+
+The easiest way to deploy QuikRes is with **Vercel**, the creators of Next.js. Smash the button below to begin.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+
+## 🔮 Roadmap
+
+- [ ] Fix GitHub vulnerability warnings
+- [ ] Fix dynamic Open Graph image generation route
+- [ ] Update Clerk to production
+- [ ] Support multiple resumes per user
+- [ ] Option to delete previous resumes
+- [ ] Option to permanently delete all data
+- [ ] Add more resume sections and social/link options
+- [ ] Tighten up this readme file
+- [ ] Update the screenshots for the manifest
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## 📬 Contact
+
+Have questions, feedback, or want to collaborate?
+
+- GitHub: [@egarrisxn](https://github.com/egarrisxn)
+- Email: **egarrisxn@gmail.com**
