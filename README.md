@@ -2,7 +2,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/egarrisxn/quikres) ![GitHub last commit](https://img.shields.io/github/last-commit/egarrisxn/quikres)
 
-![quikres](https://github.com/user-attachments/assets/81746be9-cdf6-4d1b-9c70-053263e66c1d)
+![quikres](https://github.com/user-attachments/assets/6275b7f3-2f20-44f9-aafc-9d1a3026295e)
 
 ## 🚀 What is QuikRes?
 
