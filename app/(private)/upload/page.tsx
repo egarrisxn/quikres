@@ -1,7 +1,5 @@
-export default function Upload() {
-  return (
-    <div>
-      <p>Upload</p>
-    </div>
-  )
+import UploadClient from "./client";
+
+export default async function UploadPage() {
+  return <UploadClient />;
 }

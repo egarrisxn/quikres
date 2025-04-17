@@ -1,45 +1,56 @@
-import type React from 'react'
-import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
-import { Toaster } from '@/components/ui/sonner'
-import { siteData } from '@/lib/site'
-import './globals.css'
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, Geist_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react";
+import { neobrutalism } from "@clerk/themes";
+import { siteData, siteUrl } from "@/lib/site";
+import { Toaster } from "@/components/ui/sonner";
+import { ClientProvider } from "./client-provider";
+import { ThemeProvider } from "next-themes";
+import { ActiveThemeProvider } from "@/components/active-theme";
+import { cn } from "@/lib/utils";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteData.url),
   title: siteData.title,
   description: siteData.description,
   applicationName: siteData.title,
-  referrer: 'origin-when-cross-origin',
+  referrer: "origin-when-cross-origin",
   keywords: [
-    'typescript',
-    'javascript',
-    'nextjs',
-    'react',
-    'tailwindCSS',
-    'vercel',
+    "typesctipt",
+    "javascript",
+    "next.js",
+    "react",
+    "tailwindcss",
+    "shadcn/ui",
+    "vercel",
+    "aws-s3",
+    "upstash-redis",
+    "tanstack-query",
+    "clerk",
+    "togehter.ai",
   ],
   openGraph: {
     title: siteData.title,
     description: siteData.description,
     url: siteData.url,
     siteName: siteData.title,
-    type: 'website',
-    locale: 'en_US',
+    type: "website",
+    locale: "en_US",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteData.title,
     description: siteData.description,
     creator: siteData.socialHandle,
@@ -49,35 +60,63 @@ export const metadata: Metadata = {
     capable: true,
     title: siteData.title,
     startupImage: siteData.ogImage,
-    statusBarStyle: 'default',
+    statusBarStyle: "default",
   },
   verification: {},
   appLinks: {},
-}
+};
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#020618' },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020618" },
   ],
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col font-mono`}
-      >
-        <main className="flex flex-1 flex-col">{children}</main>
-        <Toaster richColors position="bottom-center" />
-        <Analytics />
-      </body>
-    </html>
-  )
+    <ClerkProvider
+      appearance={{
+        baseTheme: neobrutalism,
+        layout: {
+          logoImageUrl: `${siteUrl}/icon.png`,
+          logoLinkUrl: `${siteUrl}`,
+          // privacyPageUrl: `${siteUrl}/privacy`,
+          unsafe_disableDevelopmentModeWarnings: true,
+        },
+        variables: {
+          colorPrimary: "#5294ff",
+          colorText: "#000000",
+          colorInputBackground: "#e5e7eb",
+        },
+      }}
+    >
+      <ClientProvider>
+        <html suppressHydrationWarning lang='en'>
+          <body
+            suppressHydrationWarning
+            className={cn(
+              dmSans.variable,
+              geistMono.variable,
+              "flex min-h-screen flex-col font-sans"
+            )}
+          >
+            <ThemeProvider attribute='class' disableTransitionOnChange>
+              <ActiveThemeProvider>
+                <main className='flex flex-1 flex-col'>{children}</main>
+                <Toaster richColors position='bottom-center' />
+              </ActiveThemeProvider>
+            </ThemeProvider>
+            <Analytics />
+          </body>
+        </html>
+      </ClientProvider>
+    </ClerkProvider>
+  );
 }
