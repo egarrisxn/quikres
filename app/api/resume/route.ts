@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { getResume, Resume, storeResume } from "@/lib/server/redisActions";
+import { getResume, Resume, storeResume } from "@/server/redisActions";
 
 // API Response Types
 export type GetResumeResponse = { resume?: Resume } | { error: string };

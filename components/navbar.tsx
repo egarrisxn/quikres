@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import { ThemeSelector } from "./theme-selector";
+import { NavLinks } from "./nav-links";
 
 export function Navbar() {
   return (
@@ -13,39 +12,18 @@ export function Navbar() {
             href='/'
             className='text-foreground/90 text-shadow-secondary-foreground font-base flex items-center gap-0.5 text-xl tracking-tight'
           >
-            <Image src='/logo.svg' alt='Logo' width={40} height={40} />
+            <Image src='/icons/icon.svg' alt='Logo' width={40} height={40} />
             QuikRes
           </Link>
         </div>
-        <div className='flex flex-row items-center gap-4'>
-          {/* User is signed in */}
+        <div className='flex flex-row items-center gap-2'>
           <SignedIn>
-            <div className='flex items-center'>
-              <UserButton />
-            </div>
+            <NavLinks />
+            <UserButton />
           </SignedIn>
-          {/* User is signed out */}
           <SignedOut>
-            <div className='flex flex-row items-center gap-4'>
-              <Link href='/about'>
-                <Button variant='link' size='link'>
-                  About
-                </Button>
-              </Link>
-              <Link href='/contact'>
-                <Button variant='link' size='link'>
-                  Contact
-                </Button>
-              </Link>
-              <Link href='/sign-in'>
-                <Button size='sm'>Login</Button>
-              </Link>
-              <Link href='/sign-up'>
-                <Button size='sm'>Sign Up</Button>
-              </Link>
-            </div>
+            <NavLinks />
           </SignedOut>
-          <ThemeSelector />
         </div>
       </nav>
     </header>

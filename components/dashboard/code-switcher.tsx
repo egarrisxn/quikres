@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useOrganization, useSession, useUser } from "@clerk/nextjs";
-import clsx from "clsx";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import theme from "./snytax-theme";
+import clsx from "clsx";
+import theme from "@/lib/syntax";
 
 const TYPES = ["user", "session", "organization"];
 

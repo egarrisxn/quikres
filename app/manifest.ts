@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
+import { SITE_DATA } from "@/lib/constants";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "QuikRes",
-    short_name: "Quik",
-    description: "Resume to website in less than a minute!",
+    name: SITE_DATA.title,
+    short_name: SITE_DATA.title,
+    description: SITE_DATA.description,
     id: "/",
     start_url: "/",
     theme_color: "#ffffff",
@@ -37,18 +38,5 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
-    // screenshots: [
-    //   {
-    //     src: '/screenshots/desktop.png',
-    //     sizes: '1920x1080',
-    //     type: 'image/png',
-    //     form_factor: 'wide',
-    //   },
-    //   {
-    //     src: '/screenshots/mobile.png',
-    //     sizes: '750x1334',
-    //     type: 'image/png',
-    //   },
-    // ],
   };
 }

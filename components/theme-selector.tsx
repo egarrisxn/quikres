@@ -9,7 +9,8 @@ import {
   RepeatIcon,
   SunIcon,
 } from "lucide-react";
-import { baseColors } from "@/lib/colors";
+import { BASE_COLORS } from "@/lib/constants";
+import { useThemeConfig } from "@/hooks/use-theme-config";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
@@ -19,7 +20,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useThemeConfig } from "./active-theme";
 
 export function ThemeSelector() {
   const { activeTheme, setActiveTheme } = useThemeConfig();
@@ -33,7 +33,11 @@ export function ThemeSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' size='bigIcon'>
+        <Button
+          variant='ghost'
+          size='bigIcon'
+          className='text-background/70 hover:text-background bg-foreground/70 hover:bg-foreground size-7 rounded-full'
+        >
           <Palette className='size-6' />
           <span className='sr-only'>Customize Theme</span>
         </Button>
@@ -64,7 +68,7 @@ export function ThemeSelector() {
               <div className='space-y-1.5'>
                 <Label className='text-xs'>Color</Label>
                 <div className='flex flex-col gap-1.5'>
-                  {baseColors.map((color) => {
+                  {BASE_COLORS.map((color) => {
                     const isActive = activeTheme === color.name;
 
                     return mounted ? (

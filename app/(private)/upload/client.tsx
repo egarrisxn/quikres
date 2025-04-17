@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FileCheck2, Sparkles, Upload, X } from "lucide-react";
-import { useUserActions } from "@/hooks/useUserActions";
+import { useUserActions } from "@/hooks/use-user-actions";
 import {
   Tooltip,
   TooltipContent,

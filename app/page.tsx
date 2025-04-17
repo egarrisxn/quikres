@@ -26,12 +26,17 @@ export default function Home() {
               Turn your old and boring resume into a fun and modern website
               faster than ever before with QuikRes!
             </p>
-            <Link href='/upload'>
-              <Button size='default' className='h-9 px-3 py-2 sm:h-10 sm:px-4'>
+
+            <Button
+              asChild
+              size='default'
+              className='h-9 px-3 py-2 sm:h-10 sm:px-4'
+            >
+              <Link href='/upload'>
                 Create Your Website
                 <Sparkles className='ml-1' />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
           <div className='mx-auto flex min-h-[90vh] w-[45%] flex-col items-center px-4 pt-4 sm:min-h-screen lg:pt-12 xl:min-h-[90vh] xl:px-0 xl:pt-16 2xl:pt-20'>
             <ResumeStack />

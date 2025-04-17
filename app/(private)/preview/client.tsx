@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { Eye, Edit, Save, X } from "lucide-react";
-import { ResumeData } from "@/lib/server/redisActions";
+import { ResumeData } from "@/server/redisActions";
 import { getUrl } from "@/lib/utils";
-import { useUserActions } from "@/hooks/useUserActions";
+import { useUserActions } from "@/hooks/use-user-actions";
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
@@ -22,7 +22,7 @@ import {
 import LoadingFallback from "@/components/loading-fallback";
 import PreviewBar from "@/components/preview-bar";
 import { PopupLive } from "@/components/popup-live";
-import { FullResume } from "@/components/resume/full-resume";
+import { FullResume } from "@/components/resume/final-resume";
 import { EditResume } from "@/components/resume/editing/edit-resume";
 
 export default function PreviewClient({ messageTip }: { messageTip?: string }) {
@@ -276,7 +276,7 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
 
       <PopupLive
         isOpen={showModalSiteLive}
-        websiteUrl={getUrl(usernameQuery.data.username)}
+        webBASE_URL={getUrl(usernameQuery.data.username)}
         onClose={() => {
           setModalSiteLive(false);
         }}

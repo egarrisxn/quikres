@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getUserData } from "@/lib/user";
-import { FullResume } from "@/components/resume/full-resume";
+import { FullResume } from "@/components/resume/final-resume";
 import { ThemeSelector } from "@/components/theme-selector";
 
 export async function generateMetadata({
@@ -97,7 +97,7 @@ export default async function ProfilePage({
           href={`/?ref=${username}`}
           className='border-border rounded-full border bg-slate-950/80 p-1'
         >
-          <img src='/logo.svg' alt='logo' width={24} height={24} />
+          <img src='/icons/icon.svg' alt='logo' width={24} height={24} />
         </Link>
       </footer>
     </>

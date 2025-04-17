@@ -1,30 +1,9 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
-const COOKIE_NAME = "active_theme";
-const DEFAULT_THEME = "default";
-
-function setThemeCookie(theme: string) {
-  if (typeof window === "undefined") return;
-
-  document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${
-    window.location.protocol === "https:" ? "Secure;" : ""
-  }`;
-}
-
-type ThemeContextType = {
-  activeTheme: string;
-  setActiveTheme: (theme: string) => void;
-};
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+import { ReactNode, useEffect, useState } from "react";
+import { ThemeContext } from "@/hooks/use-theme-config";
+import { setThemeCookie } from "@/lib/utils";
+import { DEFAULT_THEME, COOKIE_NAME } from "@/lib/constants";
 
 export function ActiveThemeProvider({ children }: { children: ReactNode }) {
   const [activeTheme, setActiveTheme] = useState<string>(DEFAULT_THEME);
@@ -79,14 +58,4 @@ export function ActiveThemeProvider({ children }: { children: ReactNode }) {
       {children}
     </ThemeContext.Provider>
   );
-}
-
-export function useThemeConfig() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error(
-      "useThemeConfig must be used within an ActiveThemeProvider"
-    );
-  }
-  return context;
 }

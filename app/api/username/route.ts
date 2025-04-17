@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { getUsernameById, updateUsername } from "@/lib/server/redisActions";
+import { getUsernameById, updateUsername } from "@/server/redisActions";
 
 // API Response Types
 export type GetResponse = { username?: string | null } | { error: string };

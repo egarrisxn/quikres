@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { ResumeData } from "@/lib/server/redisActions";
+import { ResumeData } from "@/server/redisActions";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { AddButton } from "./add-button";

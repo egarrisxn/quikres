@@ -6,9 +6,9 @@ import {
   getResume,
   getUsernameById,
   storeResume,
-} from "@/lib/server/redisActions";
-import { generateResumeObject } from "@/lib/server/ai/generateResumeObject";
-import { MAX_USERNAME_LENGTH } from "@/lib/config";
+} from "@/server/redisActions";
+import { generateResumeObject } from "@/server/ai/generateResumeObject";
+import { MAX_USERNAME_LENGTH } from "@/lib/constants";
 import LoadingFallback from "@/components/loading-fallback";
 import PreviewClient from "./client";
 

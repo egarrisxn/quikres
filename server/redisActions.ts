@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { upstashRedis } from "./redis";
-import { ResumeDataSchema } from "../resume";
-import { PRIVATE_ROUTES } from "../config";
+import { ResumeDataSchema } from "../lib/resume";
+import { PRIVATE_ROUTES } from "../lib/constants";
 
 // Key prefixes for different types of data
 const REDIS_KEYS = {
@@ -220,5 +220,34 @@ export const updateUsername = async (
   } catch (error) {
     console.error("Username update failed:", error);
     return false;
+  }
+};
+
+/**
+ * Fetches all usernames that have a live resume associated with them.
+ */
+export const getAllPublicUsernamesWithLiveResume = async (): Promise<
+  string[]
+> => {
+  try {
+    const keys = await upstashRedis.keys(`${REDIS_KEYS.RESUME_PREFIX}*`);
+    const publicUsernames: string[] = [];
+
+    for (const resumeKey of keys) {
+      const userId = resumeKey.split(":")[1]; // Extract userId from "resume:{userId}"
+      const resumeData = await getResume(userId);
+
+      if (resumeData?.status === "live") {
+        const username = await getUsernameById(userId);
+        if (username) {
+          publicUsernames.push(username);
+        }
+      }
+    }
+
+    return publicUsernames;
+  } catch (error) {
+    console.error("Error fetching public usernames with live resumes:", error);
+    return [];
   }
 };

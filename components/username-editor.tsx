@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { toast } from "sonner";
-import { MAX_USERNAME_LENGTH } from "@/lib/config";
-import { useUserActions } from "@/hooks/useUserActions";
+import { MAX_USERNAME_LENGTH } from "@/lib/constants";
+import { useUserActions } from "@/hooks/use-user-actions";
 import { Button } from "./ui/button";
 import {
   Dialog,

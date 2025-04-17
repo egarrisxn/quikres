@@ -18,11 +18,11 @@ import {
 export const PopupLive = ({
   isOpen,
   onClose,
-  websiteUrl,
+  webBASE_URL,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  websiteUrl: string;
+  webBASE_URL: string;
 }) => {
   const isMobile = useIsMobile();
 
@@ -39,12 +39,12 @@ export const PopupLive = ({
 
           <div className='flex w-full flex-col gap-4 md:gap-2'>
             <div className='rounded-base border-border bg-secondary text-foreground min-h-10 grow border p-2 px-3 text-sm'>
-              {websiteUrl}
+              {webBASE_URL}
             </div>
             <div className='grid grid-cols-2 gap-4 md:gap-2'>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(websiteUrl);
+                  navigator.clipboard.writeText(webBASE_URL);
                   toast.success("Copied link to your website");
                 }}
                 className='hover:bg-hover rounded-base flex flex-row items-center justify-center gap-2 p-2 text-white'
@@ -54,7 +54,7 @@ export const PopupLive = ({
                 <span className='text-white'>Copy URL</span>
               </button>
               <a
-                href={websiteUrl}
+                href={webBASE_URL}
                 target='_blank'
                 rel='noreferrer'
                 className='hover:bg-hover rounded-base flex flex-row items-center justify-center gap-2 p-2 text-white'
@@ -67,7 +67,7 @@ export const PopupLive = ({
         </div>
       </div>
     );
-  }, [websiteUrl]);
+  }, [webBASE_URL]);
 
   if (!isMobile) {
     return (

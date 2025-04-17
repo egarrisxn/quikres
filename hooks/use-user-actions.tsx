@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useS3Upload } from "next-s3-upload";
-import { Resume, ResumeData } from "@/lib/server/redisActions";
+import { Resume, ResumeData } from "@/server/redisActions";
 import { PublishStatuses } from "@/components/preview-bar";
 import { ResumeDataSchema } from "@/lib/resume";
 

@@ -1,6 +1,6 @@
 import { generateObject } from "ai";
 import { createTogetherAI } from "@ai-sdk/togetherai";
-import { ResumeDataSchema } from "../../resume";
+import { ResumeDataSchema } from "@/lib/resume";
 import dedent from "dedent";
 
 const togetherai = createTogetherAI({

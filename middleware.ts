@@ -1,5 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { PRIVATE_ROUTES } from "./lib/config";
+import { PRIVATE_ROUTES } from "./lib/constants";
 
 const isPrivateRoute = createRouteMatcher(
   PRIVATE_ROUTES.map((route) => `/${route}`)

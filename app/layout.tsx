@@ -1,31 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Geist_Mono } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
-import { neobrutalism } from "@clerk/themes";
-import { siteData, siteUrl } from "@/lib/site";
-import { Toaster } from "@/components/ui/sonner";
-import { ClientProvider } from "./client-provider";
-import { ThemeProvider } from "next-themes";
-import { ActiveThemeProvider } from "@/components/active-theme";
+import { SITE_DATA } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import "./globals.css";
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Toaster } from "@/components/ui/sonner";
+import { dmSans, geistMono } from "@/fonts";
+import {
+  AuthProvider,
+  ClientProvider,
+  ThemeProvider,
+  ActiveThemeProvider,
+} from "@/providers";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteData.url),
-  title: siteData.title,
-  description: siteData.description,
-  applicationName: siteData.title,
+  metadataBase: new URL(SITE_DATA.url),
+  title: SITE_DATA.title,
+  description: SITE_DATA.description,
+  applicationName: SITE_DATA.title,
   referrer: "origin-when-cross-origin",
   keywords: [
     "typesctipt",
@@ -41,34 +32,44 @@ export const metadata: Metadata = {
     "clerk",
     "togehter.ai",
   ],
+  icons: {
+    icon: {
+      url: "/icons/icon.png",
+      sizes: "192x192",
+      type: "image/png",
+    },
+    apple: {
+      url: "/icons/apple-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
+    other: {
+      rel: "icon",
+      url: "/icons/icon.svg",
+      type: "image/svg+xml",
+    },
+  },
   openGraph: {
-    title: siteData.title,
-    description: siteData.description,
-    url: siteData.url,
-    siteName: siteData.title,
     type: "website",
-    locale: "en_US",
+    title: SITE_DATA.title,
+    description: SITE_DATA.description,
+    url: SITE_DATA.url,
+    siteName: SITE_DATA.title,
+    locale: SITE_DATA.locale,
+    images: { url: SITE_DATA.og, alt: SITE_DATA.og },
   },
   twitter: {
     card: "summary_large_image",
-    title: siteData.title,
-    description: siteData.description,
-    creator: siteData.socialHandle,
-    site: siteData.socialHandle,
-  },
-  appleWebApp: {
-    capable: true,
-    title: siteData.title,
-    startupImage: siteData.ogImage,
-    statusBarStyle: "default",
+    title: SITE_DATA.title,
+    description: SITE_DATA.description,
+    creator: SITE_DATA.handle,
+    site: SITE_DATA.handle,
+    images: { url: SITE_DATA.og, alt: SITE_DATA.og },
   },
   verification: {},
-  appLinks: {},
 };
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#020618" },
@@ -81,35 +82,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: neobrutalism,
-        layout: {
-          logoImageUrl: `${siteUrl}/icon.png`,
-          logoLinkUrl: `${siteUrl}`,
-          // privacyPageUrl: `${siteUrl}/privacy`,
-          unsafe_disableDevelopmentModeWarnings: true,
-        },
-        variables: {
-          colorPrimary: "#5294ff",
-          colorText: "#000000",
-          colorInputBackground: "#e5e7eb",
-        },
-      }}
-    >
+    <AuthProvider>
       <ClientProvider>
-        <html suppressHydrationWarning lang='en'>
+        <html lang='en' suppressHydrationWarning>
           <body
+            className={cn(dmSans.variable, geistMono.variable)}
             suppressHydrationWarning
-            className={cn(
-              dmSans.variable,
-              geistMono.variable,
-              "flex min-h-screen flex-col font-sans"
-            )}
           >
-            <ThemeProvider attribute='class' disableTransitionOnChange>
+            <ThemeProvider>
               <ActiveThemeProvider>
-                <main className='flex flex-1 flex-col'>{children}</main>
+                <main>{children}</main>
                 <Toaster richColors position='bottom-center' />
               </ActiveThemeProvider>
             </ThemeProvider>
@@ -117,6 +99,6 @@ export default function RootLayout({
           </body>
         </html>
       </ClientProvider>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }

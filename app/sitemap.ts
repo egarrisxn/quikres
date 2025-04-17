@@ -1,14 +1,30 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/site";
+import { BASE_URL } from "@/lib/constants";
+import { getUrl } from "@/lib/utils";
+import { getAllPublicUsernamesWithLiveResume } from "@/server/redisActions";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: siteUrl,
+      url: BASE_URL,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
     },
   ];
-  return staticPages;
+
+  const publicUsernames = await getAllPublicUsernamesWithLiveResume();
+
+  const userResumePages: MetadataRoute.Sitemap = await Promise.all(
+    publicUsernames.map(async (username) => {
+      return {
+        url: getUrl(username),
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.8,
+      };
+    })
+  );
+
+  return [...staticPages, ...userResumePages];
 }

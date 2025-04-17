@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { checkUsernameAvailability } from "@/lib/server/redisActions";
+import { checkUsernameAvailability } from "@/server/redisActions";
 
 // API Response Types
 export type PostResponse = { available: boolean } | { error: string };

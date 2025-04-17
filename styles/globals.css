@@ -40,61 +40,6 @@
   }
 }
 
-/* :root {
-  --background: oklch(93.46% 0.0305 255.11);
-  --foreground: oklch(20% 0.01 260); 
-  --secondary: oklch(100% 0 0);
-  --secondary-foreground: oklch(0% 0 0);
-  --primary: oklch(67.47% 0.1726 259.49);
-  --primary-foreground: oklch(0% 0 0);
-  --muted: oklch(88% 0.02 255);
-  --muted-foreground: oklch(40% 0.03 260);
-  --accent: oklch(65% 0.08 260); 
-  --accent-foreground: oklch(10% 0 0);
-  --card: oklch(67.47% 0.1726 259.49);
-  --card-foreground: oklch(0% 0 0);
-  --popover: oklch(67.47% 0.1726 259.49);
-  --popover-foreground: oklch(0% 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0% 0 0);
-  --border: oklch(0% 0 0);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0% 0 0);
-  --link: oklch(0.6 0.1205 257.04);
-  --icon: oklch(0.19 0 0 / 50.2%);
-  --hover: oklch(0.93 0.0305 255.11 / 80%);
-  --overlay: oklch(0% 0 0 / 0.8);
-  --shadow: 4px 4px 0px 0px var(--border);
-  --radius: 0.625rem;
-}
-
-.dark {
-  --background: oklch(29.23% 0.0626 270.49);
-  --foreground: oklch(85% 0.01 270); 
-  --secondary: oklch(23.93% 0 0);
-  --secondary-foreground: oklch(92.49% 0 0);
-  --primary: oklch(67.47% 0.1726 259.49);
-  --primary-foreground: oklch(0% 0 0);
-  --muted: oklch(35% 0.04 270);
-  --muted-foreground: oklch(75% 0.02 260);
-  --accent: oklch(65% 0.08 260);
-  --accent-foreground: oklch(95% 0 0);
-  --card: oklch(67.47% 0.1726 259.49);
-  --card-foreground: oklch(0% 0 0);
-  --popover: oklch(67.47% 0.1726 259.49);
-  --popover-foreground: oklch(0% 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(92.49% 0 0);
-  --border: oklch(0% 0 0);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(100% 0 0);
-  --link: oklch(0.78 0.1126 258.15);
-  --icon: oklch(1 0 0 / 50.2%);
-  --hover: oklch(0.29 0.0626 270.49 / 80%);
-  --overlay: oklch(0% 0 0 / 0.8);
-  --shadow: 4px 4px 0px 0px var(--border);
-} */
-
 :root {
   --radius: 0.735rem;
   --background: oklch(1 0 0);
@@ -199,7 +144,10 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground flex min-h-screen flex-col font-sans;
+  }
+  main {
+    @apply flex flex-1 flex-col;
   }
 }
 
