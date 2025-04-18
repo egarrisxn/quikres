@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getUserData } from "@/lib/user";
 import { FullResume } from "@/components/resume/final-resume";
-import { ThemeSelector } from "@/components/theme-selector";
+import { ThemeDropdown } from "@/components/theme-dropdown";
 
 export async function generateMetadata({
   params,
@@ -81,9 +81,9 @@ export default async function ProfilePage({
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className='mx-auto mt-4 flex w-full max-w-3xl'>
-        <div className='z-20 flex w-full items-center justify-start pl-2 md:justify-end md:pr-1 md:pl-0 lg:pr-0'>
-          <ThemeSelector />
+      <header className='mx-auto mt-3 flex w-full max-w-3xl'>
+        <div className='flex w-full items-start justify-start lg:pl-0'>
+          <ThemeDropdown />
         </div>
       </header>
       <section className='flex min-h-[calc(100vh-200px)] flex-1 flex-col'>
@@ -95,7 +95,7 @@ export default async function ProfilePage({
       <footer className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'>
         <Link
           href={`/?ref=${username}`}
-          className='border-border rounded-full border bg-slate-950/80 p-1'
+          className='bg-foreground/10 rounded-full p-1'
         >
           <img src='/icons/icon.svg' alt='logo' width={24} height={24} />
         </Link>

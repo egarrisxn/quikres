@@ -1,16 +1,17 @@
 import { ClerkProvider } from "@clerk/nextjs";
-// import { neobrutalism } from "@clerk/themes";
 import { BASE_URL } from "@/lib/constants";
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
   return (
     <ClerkProvider
       appearance={{
-        // baseTheme: neobrutalism,
         layout: {
           logoImageUrl: `${BASE_URL}/icons/icon.png`,
           logoLinkUrl: `${BASE_URL}`,
-          // privacyPageUrl: `${BASE_URL}/privacy`,
           unsafe_disableDevelopmentModeWarnings: true,
         },
         variables: {

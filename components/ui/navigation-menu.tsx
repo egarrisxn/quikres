@@ -36,7 +36,6 @@ function NavigationMenuListItem({
           <NavigationMenuPrimitiveLink asChild>
             <div>
               {" "}
-              {/* Wrap title and children in a single div */}
               <div className='font-heading text-base leading-none'>{title}</div>
               <p className='font-base line-clamp-2 text-sm leading-snug'>
                 {children}
