@@ -6,7 +6,7 @@ import { NavLinks } from "./nav-links";
 export function Navbar() {
   return (
     <header className='mt-auto w-full border-b px-6 shadow'>
-      <nav className='mx-auto flex h-18 w-full max-w-5xl items-center justify-between'>
+      <nav className='mx-auto flex h-18 w-full max-w-5xl items-center justify-between 2xl:max-w-6xl'>
         <div>
           <Link
             href='/'

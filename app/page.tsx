@@ -10,9 +10,9 @@ export default function Home() {
     <>
       <Navbar />
       <div className='mx-auto grid min-h-screen w-full place-items-center pt-20 sm:pt-24 lg:pt-0'>
-        <div className='container mx-auto flex w-full flex-col items-center justify-center gap-20 lg:max-w-5xl lg:flex-row lg:gap-0 lg:pt-16 xl:h-screen 2xl:max-w-7xl 2xl:gap-4 2xl:pt-40'>
+        <div className='container mx-auto flex w-full flex-col items-center justify-center gap-20 border lg:max-w-5xl lg:flex-row lg:gap-0 lg:pt-16 xl:h-screen 2xl:max-w-6xl 2xl:gap-4 2xl:pt-40'>
           <div className='w-full px-4 lg:min-h-screen lg:w-1/2 lg:pt-24 xl:max-h-[90vh] xl:min-h-[90vh] xl:pr-0 xl:pl-8 2xl:h-[50vh] 2xl:pt-32'>
-            <div className='mx-auto flex w-full flex-col items-center gap-2 px-2 text-center lg:items-start lg:pr-0 lg:pl-8 lg:text-start 2xl:gap-3'>
+            <div className='mx-auto flex w-full flex-col items-center gap-2 px-2 text-center lg:items-start lg:pr-0 lg:pl-8 lg:text-start 2xl:gap-3 2xl:pl-0'>
               <span className='bg-secondary text-secondary-foreground rounded-base font-base inline-block px-2 py-1 text-xs tracking-tighter lg:px-2.5 lg:py-1.5'>
                 No Ads. No Paywalls. 100% Free.
               </span>
@@ -37,7 +37,7 @@ export default function Home() {
             </div>
           </div>
           <div className='min-h-[90vh] w-full px-4 lg:min-h-screen lg:w-1/2 lg:pt-4 xl:max-h-[90vh] xl:min-h-[90vh] xl:pr-8 xl:pl-0 2xl:h-[50vh] 2xl:pt-8'>
-            <div className='mx-auto flex w-full flex-col items-center px-4 lg:pr-8 lg:pl-0'>
+            <div className='mx-auto flex w-full flex-col items-center px-2 lg:pr-8 lg:pl-0 2xl:items-start 2xl:py-4'>
               <ResumeStack />
             </div>
           </div>
