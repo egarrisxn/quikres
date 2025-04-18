@@ -32,7 +32,7 @@ export const SITE_DATA: {
 export const PUBLIC_NAV = [
   {
     title: "About Us",
-    href: "/about",
+    href: "/",
     description: "Learn a little about us!",
   },
   {
