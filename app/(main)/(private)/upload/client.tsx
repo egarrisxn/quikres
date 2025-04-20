@@ -57,9 +57,9 @@ export default function UploadClient() {
   const isUpdating = resumeQuery.isPending || uploadResumeMutation.isPending;
 
   return (
-    <div className='flex flex-1 flex-col items-center gap-6 px-4 py-12'>
-      <div className='w-full max-w-[27.5rem] text-center'>
-        <h1 className='pb-6'>
+    <section className='grid min-h-[70vh] w-full place-items-center sm:min-h-[80vh]'>
+      <div className='max-w-lg space-y-6 py-8 text-center lg:pt-0 lg:pb-16 xl:pb-24 2xl:pb-56'>
+        <h1 className='font-base px-4 text-base sm:px-6 lg:px-8 2xl:px-10'>
           Upload a PDF of your resume to generate your personal site. You may
           modify your site before publishing it.
         </h1>
@@ -67,10 +67,10 @@ export default function UploadClient() {
           {fileState.status !== "empty" && (
             <button
               onClick={handleReset}
-              className='hover:bg-hover absolute top-2 right-2 z-10 rounded-full p-1'
+              className='absolute top-2 right-2 z-10 p-1'
               disabled={isUpdating}
             >
-              <X className='size-4 text-gray-500' />
+              <X className='text-foreground/60 hover:text-destructive/60 size-4' />
             </button>
           )}
 
@@ -79,9 +79,9 @@ export default function UploadClient() {
             maxFiles={1}
             icon={
               fileState.status !== "empty" ? (
-                <FileCheck2 className='size-6 text-gray-600' />
+                <FileCheck2 className='text-foreground/80 size-6' />
               ) : (
-                <Upload className='size-6 text-gray-600' />
+                <Upload className='text-foreground/80 size-6' />
               )
             }
             title={
@@ -92,7 +92,7 @@ export default function UploadClient() {
               </span>
             }
             description={
-              <span className='text-center text-xs font-light text-gray-500'>
+              <span className='text-foreground/60 text-center text-xs font-light'>
                 {fileState.status !== "empty"
                   ? `${(fileState.file.size / 1024 / 1024).toFixed(2)} MB`
                   : "Must be in PDF format"}
@@ -105,23 +105,23 @@ export default function UploadClient() {
             onDropRejected={() => toast.error("Only PDF files are supported")}
           />
         </div>
-      </div>
-      <div className=''>
+
         <div className='relative'>
           <Button
-            className='h-auto px-4 py-3'
+            size='default'
+            className='h-10 px-4 py-2.5 2xl:h-11 2xl:px-6 2xl:py-3 2xl:text-xl'
             disabled={fileState.status === "empty" || isUpdating}
             onClick={() => router.push("/pdf")}
           >
             {isUpdating ? (
               <>
-                <Spinner className='mr-2 size-5' />
+                <Spinner className='mr-1' />
                 Processing...
               </>
             ) : (
               <>
-                <Sparkles className='mr-2 size-5' />
-                Generate Website
+                <Sparkles className='mr-0.5' />
+                Generate Now!
               </>
             )}
           </Button>
@@ -139,6 +139,6 @@ export default function UploadClient() {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

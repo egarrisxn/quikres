@@ -6,6 +6,9 @@
 @import "./themes.css";
 
 @theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 120rem;
+
   --animate-test: test 0s ease-out;
   --animate-bounce: bounce 1s infinite;
   --animate-short-fade: fade 0.3s ease-in-out;

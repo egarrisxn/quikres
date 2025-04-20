@@ -50,7 +50,7 @@ export default function ResumeStack() {
   }, [handleSwipeComplete]);
 
   return (
-    <div className='relative h-96 w-72 sm:h-[30rem] sm:w-96 lg:w-[26rem]'>
+    <div className='relative h-96 w-72 lg:h-[30rem] lg:w-96 xl:w-[26rem]'>
       {stack.map((card, index) => {
         const isTopCard = index === 0;
         const scaleFactor = 1 - index * 0.04;
@@ -60,7 +60,7 @@ export default function ResumeStack() {
         return (
           <motion.div
             key={card.id}
-            className='rounded-base xs:min-h-96 xs:min-w-[19rem] xs:max-w-[26rem] absolute flex size-fit max-w-[17rem] min-w-48 flex-col justify-between border bg-white p-1.5 shadow-xl sm:min-h-[30rem] sm:min-w-96 lg:min-w-[26rem] 2xl:max-w-[34rem] 2xl:min-w-[34rem]'
+            className='rounded-base xs:min-h-96 xs:min-w-[19rem] xs:max-w-[26rem] absolute flex size-fit max-w-[17rem] min-w-48 flex-col justify-between border bg-white p-1.5 shadow-xl lg:min-h-[30rem] lg:min-w-96 xl:min-w-[26rem] 2xl:max-w-[34rem] 2xl:min-w-[34rem]'
             style={{
               zIndex: stack.length - index,
             }}

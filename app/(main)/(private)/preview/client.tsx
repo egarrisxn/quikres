@@ -148,139 +148,148 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
   );
 
   return (
-    <div className='bg-background flex min-h-screen w-full flex-col gap-4 pb-16'>
-      {messageTip && (
-        <div className='mx-auto w-full max-w-4xl px-4 md:px-2'>
-          <div className='rounded-base flex items-start border border-yellow-200 bg-yellow-50 p-4 text-yellow-800'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='mt-0.5 mr-2 size-5'
-              viewBox='0 0 20 20'
-              fill='currentColor'
-            >
-              <path
-                fillRule='evenodd'
-                d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
-                clipRule='evenodd'
-              />
-            </svg>
-            <p>{messageTip}</p>
+    <section className='grid min-h-screen w-full place-items-center'>
+      <div className='mx-auto w-full max-w-4xl flex-col gap-y-8 pb-16'>
+        {messageTip && (
+          <div className='px-4 md:px-2'>
+            <div className='rounded-base flex items-start border border-yellow-200 bg-yellow-50 p-4 text-yellow-800'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='mt-0.5 mr-2 size-5'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
+                  clipRule='evenodd'
+                />
+              </svg>
+              <p>{messageTip}</p>
+            </div>
           </div>
-        </div>
-      )}
-      <div className='mx-auto mt-4 w-full max-w-4xl px-4 md:px-0'>
-        <PreviewBar
-          initialUsername={usernameQuery.data.username}
-          status={resumeQuery.data?.resume?.status}
-          onStatusChange={async (newStatus) => {
-            await toggleStatusMutation.mutateAsync(newStatus);
-            const isFirstTime = !localStorage.getItem("publishedSite");
+        )}
+        <div className='mt-4 px-4 lg:px-0'>
+          <PreviewBar
+            initialUsername={usernameQuery.data.username}
+            status={resumeQuery.data?.resume?.status}
+            onStatusChange={async (newStatus) => {
+              await toggleStatusMutation.mutateAsync(newStatus);
+              const isFirstTime = !localStorage.getItem("publishedSite");
 
-            if (isFirstTime && newStatus === "live") {
-              setModalSiteLive(true);
-              localStorage.setItem("publishedSite", new Date().toDateString());
-            } else {
-              if (newStatus === "draft") {
-                toast.warning("Your website has been unpublished");
+              if (isFirstTime && newStatus === "live") {
+                setModalSiteLive(true);
+                localStorage.setItem(
+                  "publishedSite",
+                  new Date().toDateString()
+                );
               } else {
-                toast.custom(() => <CustomLiveToast />);
+                if (newStatus === "draft") {
+                  toast.warning("Your website has been unpublished");
+                } else {
+                  toast.custom(() => <CustomLiveToast />);
+                }
               }
-            }
+            }}
+            isChangingStatus={toggleStatusMutation.isPending}
+          />
+        </div>
+
+        <div className='xs:flex-row xs:pl-3 mx-auto mt-6 mb-4 flex flex-col items-center justify-between gap-4 px-4'>
+          <ToggleGroup
+            type='single'
+            value={isEditMode ? "edit" : "preview"}
+            onValueChange={(value) => setIsEditMode(value === "edit")}
+            aria-label='View mode'
+          >
+            <ToggleGroupItem value='preview' aria-label='Preview mode'>
+              <Eye className='mr-1 size-4' />
+              <span>View</span>
+            </ToggleGroupItem>
+            <ToggleGroupItem value='edit' aria-label='Edit mode'>
+              <Edit className='mr-1 size-4' />
+              <span>Edit</span>
+            </ToggleGroupItem>
+          </ToggleGroup>
+
+          {isEditMode && (
+            <div className='flex gap-2'>
+              <Button
+                size='sm'
+                variant='neutral'
+                onClick={handleDiscardChanges}
+                className='flex items-center gap-0.5 px-2'
+                disabled={
+                  !hasUnsavedChanges || saveResumeDataMutation.isPending
+                }
+              >
+                <X className='size-3.5' />
+                <span>Discard</span>
+              </Button>
+              <Button
+                size='sm'
+                onClick={handleSaveChanges}
+                className='flex items-center gap-1.5 px-2'
+                disabled={
+                  !hasUnsavedChanges || saveResumeDataMutation.isPending
+                }
+              >
+                {saveResumeDataMutation.isPending ? (
+                  <span className='animate-spin'>⌛</span>
+                ) : (
+                  <Save className='size-3.5' />
+                )}
+                <span>
+                  {saveResumeDataMutation.isPending ? "Saving..." : "Save"}
+                </span>
+              </Button>
+            </div>
+          )}
+        </div>
+
+        <div className='md:rounded-base mx-auto flex items-center justify-between px-4 md:border-[0.5px] md:px-2'>
+          {isEditMode ? (
+            <EditResume
+              resume={localResumeData}
+              onChangeResume={handleResumeChange}
+            />
+          ) : (
+            <FullResume
+              resume={localResumeData}
+              profilePicture={user?.imageUrl}
+            />
+          )}
+        </div>
+
+        <AlertDialog
+          open={showDiscardConfirmation}
+          onOpenChange={setShowDiscardConfirmation}
+        >
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Discard Changes?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to discard your changes? This action
+                cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDiscardChanges}>
+                Discard
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        <PopupLive
+          isOpen={showModalSiteLive}
+          webBASE_URL={getUrl(usernameQuery.data.username)}
+          onClose={() => {
+            setModalSiteLive(false);
           }}
-          isChangingStatus={toggleStatusMutation.isPending}
         />
       </div>
-
-      <div className='mx-auto flex w-full max-w-4xl flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-2'>
-        <ToggleGroup
-          type='single'
-          value={isEditMode ? "edit" : "preview"}
-          onValueChange={(value) => setIsEditMode(value === "edit")}
-          aria-label='View mode'
-        >
-          <ToggleGroupItem value='preview' aria-label='Preview mode'>
-            <Eye className='mr-1 size-4' />
-            <span>View</span>
-          </ToggleGroupItem>
-          <ToggleGroupItem value='edit' aria-label='Edit mode'>
-            <Edit className='mr-1 size-4' />
-            <span>Edit</span>
-          </ToggleGroupItem>
-        </ToggleGroup>
-
-        {isEditMode && (
-          <div className='flex gap-2'>
-            <Button
-              size='sm'
-              variant='neutral'
-              onClick={handleDiscardChanges}
-              className='flex items-center gap-1'
-              disabled={!hasUnsavedChanges || saveResumeDataMutation.isPending}
-            >
-              <X className='size-4' />
-              <span>Discard</span>
-            </Button>
-            <Button
-              size='sm'
-              onClick={handleSaveChanges}
-              className='flex items-center gap-1'
-              disabled={!hasUnsavedChanges || saveResumeDataMutation.isPending}
-            >
-              {saveResumeDataMutation.isPending ? (
-                <span className='animate-spin'>⌛</span>
-              ) : (
-                <Save className='size-4' />
-              )}
-              <span>
-                {saveResumeDataMutation.isPending ? "Saving..." : "Save"}
-              </span>
-            </Button>
-          </div>
-        )}
-      </div>
-
-      <div className='bg-background md:rounded-base mx-auto flex w-full max-w-4xl items-center justify-between border-[0.5px] px-4 md:px-2'>
-        {isEditMode ? (
-          <EditResume
-            resume={localResumeData}
-            onChangeResume={handleResumeChange}
-          />
-        ) : (
-          <FullResume
-            resume={localResumeData}
-            profilePicture={user?.imageUrl}
-          />
-        )}
-      </div>
-
-      <AlertDialog
-        open={showDiscardConfirmation}
-        onOpenChange={setShowDiscardConfirmation}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Discard Changes?</AlertDialogTitle>
-            <AlertDialogDescription>
-              Are you sure you want to discard your changes? This action cannot
-              be undone.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDiscardChanges}>
-              Discard
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
-      <PopupLive
-        isOpen={showModalSiteLive}
-        webBASE_URL={getUrl(usernameQuery.data.username)}
-        onClose={() => {
-          setModalSiteLive(false);
-        }}
-      />
-    </div>
+    </section>
   );
 }

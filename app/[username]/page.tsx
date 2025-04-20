@@ -16,30 +16,30 @@ export async function generateMetadata({
 
   if (!user_id) {
     return {
-      title: "User Not Found | Quikres",
+      title: "User Not Found - Quik|Res",
       description: "This user profile could not be found on Quikres",
     };
   }
 
   if (!resume?.resumeData || resume.status !== "live") {
     return {
-      title: "Resume Not Found | Quikres",
+      title: "Resume Not Found - Quik|Res",
       description: "This resume could not be found on Quikres",
     };
   }
 
   return {
-    title: `${resume.resumeData.header.name}'s Resume | Quikres`,
+    title: `${resume.resumeData.header.name}'s Resume - Quik|Res`,
     description: resume.resumeData.summary,
     openGraph: {
-      title: `${resume.resumeData.header.name}'s Resume | Quikres`,
+      title: `${resume.resumeData.header.name}'s Resume - Quik|Res`,
       description: resume.resumeData.summary,
       images: [
         {
           url: `https://quikres.vercel.app/${username}/og`,
           width: 1200,
           height: 630,
-          alt: "QuikRes Profile",
+          alt: "Quik|Res Profile",
         },
       ],
     },
@@ -81,25 +81,25 @@ export default async function ProfilePage({
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <header className='mx-auto mt-3 flex w-full max-w-3xl'>
-        <div className='flex w-full items-start justify-start lg:pl-0'>
+      <div className='grid min-h-[100dvh] w-full grid-rows-[auto_1fr_auto]'>
+        <header className='mx-auto flex w-full max-w-3xl pt-1 pl-2 lg:pl-0'>
           <ThemeDropdown />
-        </div>
-      </header>
-      <section className='flex min-h-[calc(100vh-200px)] flex-1 flex-col'>
-        <FullResume
-          resume={resume?.resumeData}
-          profilePicture={profilePicture}
-        />
-      </section>
-      <footer className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'>
-        <Link
-          href={`/?ref=${username}`}
-          className='bg-foreground/10 rounded-full p-1'
-        >
-          <img src='/icons/icon.svg' alt='logo' width={24} height={24} />
-        </Link>
-      </footer>
+        </header>
+        <section className='flex flex-col'>
+          <FullResume
+            resume={resume?.resumeData}
+            profilePicture={profilePicture}
+          />
+        </section>
+        <footer className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'>
+          <Link
+            href={`/?ref=${username}`}
+            className='bg-foreground/5 rounded-base p-0.5 shadow-sm'
+          >
+            <img src='/icons/icon.svg' alt='logo' width={24} height={24} />
+          </Link>
+        </footer>
+      </div>
     </>
   );
 }

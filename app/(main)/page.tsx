@@ -5,21 +5,20 @@ import ResumeStack from "@/components/resume-stack";
 
 export default function Home() {
   return (
-    <div className='mx-auto grid min-h-screen w-full place-items-center pt-20 sm:pt-24 lg:pt-0'>
-      <div className='container mx-auto flex w-full flex-col items-center justify-center gap-20 lg:max-w-5xl lg:flex-row lg:gap-0 lg:pt-16 xl:h-screen 2xl:max-w-6xl 2xl:gap-4 2xl:pt-40'>
-        <div className='w-full px-4 lg:min-h-screen lg:w-1/2 lg:pt-24 xl:max-h-[90vh] xl:min-h-[90vh] xl:pr-0 xl:pl-8 2xl:h-[50vh] 2xl:pt-32'>
-          <div className='mx-auto flex w-full flex-col items-center gap-2 px-2 text-center lg:items-start lg:pr-0 lg:pl-8 lg:text-start 2xl:gap-3 2xl:pl-0'>
+    <div className='grid min-h-screen w-full place-items-center'>
+      <div className='mx-auto flex max-w-5xl flex-col items-center justify-center gap-y-16 py-8 lg:flex-row lg:gap-y-0 lg:pt-0 lg:pb-16 xl:pb-24 2xl:pb-56'>
+        <div className='w-full px-4'>
+          <div className='mx-auto flex w-full flex-col items-center gap-1 px-2 pt-8 text-center lg:items-start lg:pt-0 lg:pr-0 lg:pl-8 lg:text-start 2xl:gap-3 2xl:pl-0'>
             <span className='bg-secondary text-secondary-foreground rounded-base font-base inline-block px-2 py-1 text-xs tracking-tighter lg:px-2.5 lg:py-1.5'>
               No Ads. No Paywalls. 100% Free.
             </span>
-            <h1 className='text-foreground mt-4 mb-3 max-w-md px-4 text-3xl font-extrabold tracking-tight text-pretty sm:max-w-lg sm:text-4xl lg:max-w-md lg:px-0 lg:text-5xl xl:max-w-lg 2xl:text-6xl'>
-              Resume to Website in Under a Minute!
+            <h1 className='text-foreground my-2 max-w-md px-4 text-3xl font-extrabold tracking-tight text-pretty sm:text-4xl lg:px-0 lg:text-5xl xl:my-4 xl:max-w-lg 2xl:max-w-xl 2xl:text-6xl'>
+              Resume 2 Website in Under 1 Minute!
             </h1>
-            <p className='text-muted-foreground mb-6 max-w-sm px-8 text-sm tracking-tight lg:px-0 lg:text-base 2xl:text-xl'>
+            <p className='text-muted-foreground mb-4 max-w-sm px-8 text-sm tracking-tight lg:px-0 lg:text-base xl:mb-8 2xl:max-w-md 2xl:text-xl'>
               Turn your old and boring resume into a fun and modern website
-              faster than ever before with QuikRes!
+              faster than ever before with Quik|Res!
             </p>
-
             <Button
               asChild
               size='default'
@@ -27,13 +26,13 @@ export default function Home() {
             >
               <Link href='/upload'>
                 <Sparkles className='mr-0.5' />
-                Create Website
+                Start Creating!
               </Link>
             </Button>
           </div>
         </div>
-        <div className='min-h-[90vh] w-full px-4 lg:min-h-screen lg:w-1/2 lg:pt-4 xl:max-h-[90vh] xl:min-h-[90vh] xl:pr-8 xl:pl-0 2xl:h-[50vh] 2xl:pt-8'>
-          <div className='mx-auto flex w-full flex-col items-center px-2 lg:pr-8 lg:pl-0 2xl:items-start 2xl:py-4'>
+        <div className='w-full px-4'>
+          <div className='mx-auto flex w-full flex-col items-center px-2 lg:pr-8 lg:pl-0'>
             <ResumeStack />
           </div>
         </div>
