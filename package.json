@@ -24,12 +24,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "next-lint": "next lint",
-    "next-lint:fix": "next lint --fix",
     "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "@ai-sdk/togetherai": "^0.2.9",
