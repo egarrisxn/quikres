@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/preview/", "/upload/"],
     },
-    sitemap: `${BASE_URL}/constantsmap.xml`,
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

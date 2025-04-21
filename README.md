@@ -1,4 +1,4 @@
-# QuikRes
+# Quik|Res
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/egarrisxn/quikres) ![GitHub last commit](https://img.shields.io/github/last-commit/egarrisxn/quikres)
 
@@ -6,7 +6,9 @@
 
 ## 🚀 What is QuikRes?
 
-**QuikRes** lets you turn your resume into a beautiful, personal website — in under a minute. No paywalls. No ads. Just fast, free resume-to-site magic.
+**Quik|Res** lets you turn your resume into a beautiful, personal website — in under a minute. No paywalls. No ads. Just fast, free resume-to-site magic.
+
+ _**Note: This project was HEAVILY inspired by Self.so. Thanks for giving me the vision for Quik|Res.**_
 
 ## 🛠️ Tech Stack
 
@@ -79,14 +81,12 @@ pnpm dev
 
 ## 🚀 Deploying
 
-The easiest way to deploy QuikRes is with **Vercel**, the creators of Next.js. Smash the button below to begin.
+The easiest way to deploy Quik|Res is with **Vercel**, the creators of Next.js. Smash the button below to begin.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
 ## 🔮 Roadmap
 
-- [ ] Fix GitHub vulnerability warnings
-- [ ] Fix dynamic Open Graph image generation route
 - [ ] Update Clerk to production
 - [ ] Support multiple resumes per user
 - [ ] Option to delete previous resumes

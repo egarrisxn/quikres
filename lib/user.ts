@@ -19,7 +19,7 @@ export async function getUserData(username: string) {
     [user_id],
     {
       tags: ["users"],
-      revalidate: 60,
+      revalidate: 3600,
     }
   );
 

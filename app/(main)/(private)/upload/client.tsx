@@ -57,7 +57,7 @@ export default function UploadClient() {
   const isUpdating = resumeQuery.isPending || uploadResumeMutation.isPending;
 
   return (
-    <section className='grid min-h-[70vh] w-full place-items-center sm:min-h-[80vh]'>
+    <section className='grid min-h-[80dvh] w-full place-items-center'>
       <div className='max-w-lg space-y-6 py-8 text-center lg:pt-0 lg:pb-16 xl:pb-24 2xl:pb-56'>
         <h1 className='font-base px-4 text-base sm:px-6 lg:px-8 2xl:px-10'>
           Upload a PDF of your resume to generate your personal site. You may

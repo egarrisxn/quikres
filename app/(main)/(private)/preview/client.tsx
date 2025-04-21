@@ -148,7 +148,7 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
   );
 
   return (
-    <section className='grid min-h-screen w-full place-items-center'>
+    <section className='grid min-h-[80dvh] w-full place-items-center'>
       <div className='mx-auto w-full max-w-4xl flex-col gap-y-8 pb-16'>
         {messageTip && (
           <div className='px-4 md:px-2'>

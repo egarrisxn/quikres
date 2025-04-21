@@ -1,23 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { NavLinks } from "./nav-links";
 
 export function Navbar() {
   return (
-    <header className='border-foreground/10 w-full border-b px-2 sm:px-4'>
+    <header className='border-foreground/10 xs:px-2 w-full border-b px-1 sm:px-4'>
       <nav className='mx-auto flex h-18 w-full max-w-5xl items-center justify-between xl:px-8 2xl:max-w-6xl 2xl:px-12'>
-        <div className='flex items-center'>
-          <Link href='/' className='block sm:hidden'>
-            <Image src='/icons/icon.svg' alt='Logo' width={32} height={32} />
-          </Link>
-          <Link href='/' className='hidden sm:block'>
-            <p className='font-base text-secondary-foreground rounded-base border-border ring-foreground text-shadow-foreground hover:text-secondary-foreground/90 shadow-foreground border-2 px-1 pt-0 pb-1 text-xl shadow-sm ring transition-all duration-200 ease-in-out text-shadow-sm'>
-              Quik|Res
-            </p>
+        <div className='xs:pl-2 flex items-center pl-0.5'>
+          <Link
+            href='/'
+            className='font-base text-secondary-foreground/90 rounded-base border-border ring-secondary-foreground text-shadow-secondary-foreground/80 hover:text-secondary-foreground bg-secondary-foreground/5 xs:border-2 xs:ring-2 border-1 px-1 pt-0 pb-1.5 text-xl leading-5 ring-1 transition-all duration-200 ease-in-out text-shadow-sm'
+          >
+            <span className='xs:hidden inline-flex'>Q|R</span>
+            <span className='xs:inline-flex hidden'>Quik|Res</span>
           </Link>
         </div>
-        <div className='flex flex-1 flex-row items-center justify-end gap-2'>
+        <div className='xs:gap-2 flex flex-1 flex-row items-center justify-end gap-1.5'>
           <SignedIn>
             <NavLinks />
             <UserButton />

@@ -40,7 +40,7 @@ export function NavLinks() {
               <NavigationMenuTrigger>Helpful Links</NavigationMenuTrigger>
               <NavigationMenuContent className='x'>
                 <div className='w-64 p-2'>
-                  <ul className='grid gap-2'>
+                  <ul className='grid gap-y-3'>
                     {PRIVATE_NAV.map((navLink) => (
                       <NavigationMenuListItem
                         key={navLink.title}
@@ -62,7 +62,7 @@ export function NavLinks() {
               <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
               <NavigationMenuContent className='x'>
                 <div className='w-64 p-2'>
-                  <ul className='grid gap-2'>
+                  <ul className='gap--y-3 grid'>
                     {PUBLIC_NAV.map((navLink) => (
                       <NavigationMenuListItem
                         key={navLink.title}
