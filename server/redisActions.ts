@@ -234,7 +234,7 @@ export const getAllPublicUsernamesWithLiveResume = async (): Promise<
     const publicUsernames: string[] = [];
 
     for (const resumeKey of keys) {
-      const userId = resumeKey.split(":")[1]; // Extract userId from "resume:{userId}"
+      const userId = resumeKey.split(":")[1];
       const resumeData = await getResume(userId);
 
       if (resumeData?.status === "live") {

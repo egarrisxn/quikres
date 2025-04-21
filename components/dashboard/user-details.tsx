@@ -23,20 +23,6 @@ function Row({
   );
 }
 
-function PointerC({ label }: { label: string }) {
-  return (
-    <div className='absolute top-1/2 left-full flex w-fit -translate-y-1/2 items-center gap-5'>
-      <div className='relative'>
-        <div className='h-px w-[6.5rem] bg-slate-400' />
-        <div className='absolute top-1/2 right-0 size-1 -translate-y-1/2 rotate-45 bg-slate-400' />
-      </div>
-      <div className='rounded-base bg-black px-1.5 py-1 font-mono text-xs text-white'>
-        {label}
-      </div>
-    </div>
-  );
-}
-
 export function UserDetails() {
   const { user } = useUser();
   const { session } = useSession();
@@ -45,8 +31,8 @@ export function UserDetails() {
   if (!user || !session) return null;
 
   return (
-    <div className='rounded-base border-border relative border bg-slate-200 p-16'>
-      <div className='max-w-[25rem] rounded-xl bg-slate-100 p-8 shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)] ring-1 ring-gray-950/5'>
+    <div className='relative'>
+      <div className='bg-secondary rounded-base shadow-base mx-auto max-w-[22rem] p-8 sm:max-w-[28rem] lg:max-w-[34rem] 2xl:max-w-[40rem]'>
         <div className='mb-6 flex flex-col items-center gap-2'>
           <div className='relative flex w-full justify-center'>
             <img
@@ -54,94 +40,75 @@ export function UserDetails() {
               alt='user Image'
               className='size-20 rounded-full'
             />
-            <div className='absolute top-1/2 left-full flex w-fit -translate-x-2.5 -translate-y-1/2 items-center gap-5'>
-              <div className='relative'>
-                <div className='h-px w-[6.5rem] bg-slate-400' />
-                <div className='absolute top-1/2 right-0 size-1 -translate-y-1/2 rotate-45 bg-slate-400' />
-              </div>
-              <div className='rounded-base bg-black px-1.5 py-1 font-mono text-xs text-white'>
-                user.imageUrl
-              </div>
-            </div>
           </div>
           {user.firstName && user.lastName ? (
             <h1 className='relative w-full text-center text-[1.0625rem] font-semibold'>
               {user.firstName} {user.lastName}
-              <div className='absolute top-1/2 left-full flex w-fit -translate-x-2.5 -translate-y-1/2 items-center gap-5'>
-                <div className='relative'>
-                  <div className='h-px w-[6.5rem] bg-slate-400' />
-                  <div className='absolute top-1/2 right-0 size-1 -translate-y-1/2 rotate-45 bg-slate-400' />
-                </div>
-                <div className='rounded-base bg-black px-1.5 py-1 font-mono text-xs text-white'>
-                  user.firstName
-                </div>
-                <div className='rounded-base -translate-x-3 bg-black px-1.5 py-1 font-mono text-xs text-white'>
-                  user.lastName
-                </div>
-              </div>
             </h1>
           ) : (
             <div className='h-4' />
           )}
         </div>
-
-        <div className='rounded-base divide-y divide-slate-200 bg-slate-50 px-2.5 text-slate-800'>
+        <h2 className='text-secondary-foreground mt-4 mb-2 text-[0.9375rem] font-semibold'>
+          User details
+        </h2>
+        <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
           <Row desc='Email' value={user.emailAddresses[0].emailAddress}>
-            <PointerC label='user.emailAddresses[0].emailAddress' />
+            <span className='sr-only'>Email</span>
           </Row>
           <Row desc='Last signed in' value={formatDate(user.lastSignInAt!)}>
-            <PointerC label='user.lastSignInAt' />
+            <span className='sr-only'>Last Signed In</span>
           </Row>
           <Row desc='Joined on' value={formatDate(user.createdAt!)}>
-            <PointerC label='user.createdAt' />
+            <span className='sr-only'>Joined On</span>
           </Row>
           <Row desc='User ID' value={user.id}>
-            <PointerC label='user.user.id' />
+            <span className='sr-only'>User ID</span>
           </Row>
         </div>
-        <h2 className='mt-6 mb-4 text-[0.9375rem] font-semibold text-slate-950'>
+        <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
           Session details
         </h2>
-        <div className='rounded-base divide-y divide-slate-200 bg-slate-50 px-2.5 text-slate-800'>
+        <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
           <Row desc='Session ID' value={session.id}>
-            <PointerC label='session.id' />
+            <span className='sr-only'>Session ID</span>
           </Row>
           <Row desc='Status' value={session.status}>
-            <PointerC label='session.status' />
+            <span className='sr-only'>Status</span>
           </Row>
           <Row
             desc='Last active'
             value={formatDateWithNumbers(session.lastActiveAt)}
           >
-            <PointerC label='session.lastActiveAt' />
+            <span className='sr-only'>Last Active</span>
           </Row>
           <Row
             desc='Session expiration'
             value={formatDateWithNumbers(session.expireAt)}
           >
-            <PointerC label='session.expireAt' />
+            <span className='sr-only'>Session Expiration</span>
           </Row>
         </div>
         {organization ? (
           <>
-            <h2 className='mt-6 mb-4 text-[0.9375rem] font-semibold text-slate-950'>
+            <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
               Organization detail
             </h2>
-            <div className='rounded-base divide-y divide-slate-200 bg-slate-50 px-2.5 text-slate-800'>
+            <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
               <Row desc='Organization ID' value={organization.id}>
-                <PointerC label='organization.id' />
+                <span className='sr-only'>Organization ID</span>
               </Row>
               <Row desc='Name' value={organization.name}>
-                <PointerC label='organization.name' />
+                <span className='sr-only'>Name</span>
               </Row>
               <Row desc='Members' value={String(organization.membersCount)}>
-                <PointerC label='organization.membersCount' />
+                <span className='sr-only'>Members</span>
               </Row>
               <Row
                 desc='Pending invitations'
                 value={String(organization.pendingInvitationsCount)}
               >
-                <PointerC label='organization.pendingInvitationsCount' />
+                <span className='sr-only'>Pending Invitations</span>
               </Row>
             </div>
           </>

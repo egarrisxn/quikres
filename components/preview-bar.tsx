@@ -34,9 +34,9 @@ export default function PreviewBar({
 
   return (
     <>
-      <div className='flex w-full flex-col items-center justify-between gap-4 py-3 sm:flex-row sm:gap-1'>
-        <div className='flex w-full flex-col items-center gap-4 sm:flex-row sm:gap-1'>
-          <div className='mr-1 flex items-center gap-1'>
+      <div className='mx-auto flex w-full flex-col items-center justify-between gap-4 py-3 sm:flex-row sm:gap-1'>
+        <div className='xs:flex-row xs:gap-1 xs:w-full mx-auto flex flex-col items-center justify-center gap-3 sm:mx-0 sm:justify-start'>
+          <div className='xs:gap-0.5 mr-1 flex items-center'>
             <button
               className={cn("size-4", status === "live" && "cursor-pointer")}
               onClick={() => {
@@ -48,24 +48,25 @@ export default function PreviewBar({
             >
               <LinkIcon className='text-primary size-3' />
             </button>
-            <p className='text-sm'>{prefix}</p>
+            <p className='xs:tracking-tight text-sm md:tracking-normal'>
+              {prefix}
+            </p>
           </div>
-          <div className='rounded-base border-input text-foreground dark:text-background flex w-full flex-row items-center overflow-hidden bg-white md:w-80'>
-            <span className='w-fit flex-1 truncate border-none bg-transparent px-3 py-2 text-sm outline-hidden focus:ring-0'>
+          <div className='rounded-base border-input text-foreground dark:text-background flex w-56 flex-row items-center overflow-hidden bg-white md:w-72'>
+            <span className='w-fit flex-1 truncate border-none bg-transparent px-3 py-1.5 text-sm tracking-tight outline-hidden focus:ring-0 md:tracking-normal'>
               {initialUsername}
             </span>
             <Button
-              size='icon'
+              size='bigIcon'
               variant='outline'
-              className='rounded-none border-none'
+              className='size-9 rounded-none border-none'
               onClick={() => setIsEditorOpen(true)}
             >
               <Pencil className='size-3' />
             </Button>
           </div>
         </div>
-
-        <div className='flex items-center gap-4'>
+        <div className='mx-auto flex items-center gap-2'>
           <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1'>
               {status === "live" ? (
@@ -99,7 +100,6 @@ export default function PreviewBar({
                 </>
               )}
             </div>
-
             <Button
               key={status}
               variant={"default"}
@@ -108,13 +108,13 @@ export default function PreviewBar({
               size='sm'
               className={` ${
                 status === "draft"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-primary"
+                  ? "bg-primary text-primary-foreground px-2"
+                  : "bg-secondary text-primary px-2"
               }`}
             >
               {isChangingStatus ? (
                 <>
-                  <span className='mr-2 size-3 animate-spin rounded-full border-2 border-white border-t-transparent'></span>
+                  <span className='mr-1 size-3 animate-spin rounded-full border-2 border-white border-t-transparent'></span>
                 </>
               ) : (
                 <span className='text-sm'>
@@ -123,7 +123,7 @@ export default function PreviewBar({
               )}
             </Button>
             {status === "live" && (
-              <Button size='sm'>
+              <Button size='sm' className='px-2'>
                 <a
                   href={`${getUrl(initialUsername)}`}
                   target='_blank'

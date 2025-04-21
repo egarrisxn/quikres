@@ -1,11 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { CheckIcon, MoonIcon, RepeatIcon, SunIcon } from "lucide-react";
-import { BASE_COLORS, PRIVATE_NAV, PUBLIC_NAV } from "@/lib/constants";
+import { BASE_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useThemeConfig } from "@/hooks/use-theme-config";
 import { Button } from "./ui/button";
@@ -13,16 +11,13 @@ import { Label } from "./ui/label";
 import { Skeleton } from "./ui/skeleton";
 import {
   NavigationMenu,
+  NavigationMenuList,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuListItem,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export function NavLinks() {
+export function ThemeDropdown() {
   const { activeTheme, setActiveTheme } = useThemeConfig();
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme: theme } = useTheme();
@@ -34,68 +29,14 @@ export function NavLinks() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <SignedIn>
-          {PRIVATE_NAV.length > 0 && (
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Helpful Links</NavigationMenuTrigger>
-              <NavigationMenuContent className='x'>
-                <div className='w-64 p-2'>
-                  <ul className='grid gap-y-3'>
-                    {PRIVATE_NAV.map((navLink) => (
-                      <NavigationMenuListItem
-                        key={navLink.title}
-                        title={navLink.title}
-                        href={navLink.href}
-                      >
-                        {navLink.description}
-                      </NavigationMenuListItem>
-                    ))}
-                  </ul>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          )}
-        </SignedIn>
-        <SignedOut>
-          {PUBLIC_NAV.length > 0 && (
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-              <NavigationMenuContent className='x'>
-                <div className='w-64 p-2'>
-                  <ul className='gap--y-3 grid'>
-                    {PUBLIC_NAV.map((navLink) => (
-                      <NavigationMenuListItem
-                        key={navLink.title}
-                        title={navLink.title}
-                        href={navLink.href}
-                      >
-                        {navLink.description}
-                      </NavigationMenuListItem>
-                    ))}
-                  </ul>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          )}
-          <NavigationMenuItem asChild>
-            <Link href='/help' passHref>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                Help
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </SignedOut>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Theme</NavigationMenuTrigger>
-          <NavigationMenuContent className='x'>
+          <NavigationMenuTrigger className='px-0'>Theme</NavigationMenuTrigger>
+          <NavigationMenuContent>
             <div className='w-64 p-2'>
               <div className='w-full'>
                 <div className='flex items-start pt-4 md:pt-0'>
-                  <div className='space-y-1.5'>
-                    <div className='leading-none font-semibold tracking-tight'>
+                  <div className='w-full max-w-44 space-y-1.5'>
+                    <div className='text-secondary-foreground leading-none font-semibold tracking-tight'>
                       Theme Library
                     </div>
                     <div className='text-muted-foreground text-xs'>

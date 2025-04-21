@@ -14,6 +14,16 @@ export function getUrl(username: string) {
   return `${domain}/${username}`;
 }
 
+export function getYear(date: string) {
+  const dateObject = new Date(date);
+  return dateObject.getFullYear();
+}
+
+export function getMonth(date: string) {
+  const dateObject = new Date(date);
+  return dateObject.toLocaleDateString("en-us", { month: "short" });
+}
+
 export function formatDate(date: Date) {
   return date.toLocaleDateString("en-US", {
     month: "short",
@@ -32,16 +42,6 @@ export function formatDateWithNumbers(date: Date): string {
     second: "2-digit",
     hour12: true,
   });
-}
-
-export function getYear(date: string) {
-  const dateObject = new Date(date);
-  return dateObject.getFullYear();
-}
-
-export function getMonth(date: string) {
-  const dateObject = new Date(date);
-  return dateObject.toLocaleDateString("en-us", { month: "short" });
 }
 
 export function setThemeCookie(theme: string) {

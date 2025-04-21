@@ -1,16 +1,26 @@
+import "../styles/globals.css";
 import type { Metadata, Viewport } from "next";
+import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE_DATA } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
-import { dmSans, geistMono } from "@/fonts";
 import {
   AuthProvider,
   ClientProvider,
   ThemeProvider,
   ActiveThemeProvider,
 } from "@/providers";
-import "../styles/globals.css";
+
+export const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
+
+export const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_DATA.url),
@@ -86,7 +96,11 @@ export default function RootLayout({
       <ClientProvider>
         <html lang='en' suppressHydrationWarning>
           <body
-            className={cn(dmSans.variable, geistMono.variable)}
+            className={cn(
+              dmSans.variable,
+              geistMono.variable,
+              "font-sans antialiased"
+            )}
             suppressHydrationWarning
           >
             <ThemeProvider>

@@ -20,21 +20,16 @@ export const SITE_DATA: {
   handle: string;
   locale: string;
 } = {
-  title: "QuikRes",
+  title: "Quik|Res",
   description: "A simple resume builder for everyone!",
   url: BASE_URL,
   og: `${BASE_URL}/images/og.png`,
-  alt: "A bright pink background with big 3D  styled letters Q and D together to form the QuikRes logo.",
+  alt: "A bright pink background with big 3D styled letters Q and D together to form the Quik|Res logo.",
   handle: "@eg__xo",
   locale: "en_US",
 };
 
 export const PUBLIC_NAV = [
-  {
-    title: "About Us",
-    href: "/about",
-    description: "Learn a little about us!",
-  },
   {
     title: "Login",
     href: "/sign-in",
@@ -49,19 +44,14 @@ export const PUBLIC_NAV = [
 
 export const PRIVATE_NAV = [
   {
-    title: "Dashboard",
+    title: "Clerk Dashboard",
     href: "/dashboard",
-    description: "Details about your site!",
+    description: "Where user details live",
   },
   {
-    title: "Edit Resume",
+    title: "Edit/Preview Resume",
     href: "/preview",
-    description: "Fine tune your resume here!",
-  },
-  {
-    title: "Contact Us",
-    href: "/",
-    description: "Need more help? We got you!",
+    description: "Finalize your website here",
   },
 ];
 

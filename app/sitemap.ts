@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getAllPublicUsernamesWithLiveResume } from "@/server/redisActions";
 import { BASE_URL } from "@/lib/constants";
 import { getUrl } from "@/lib/utils";
-import { getAllPublicUsernamesWithLiveResume } from "@/server/redisActions";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [

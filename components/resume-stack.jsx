@@ -5,30 +5,15 @@ import { motion } from "motion/react";
 import { useDrag } from "@use-gesture/react";
 
 const resumeImages = [
-  {
-    id: 0,
-    name: "0",
-    src: "/images/1.png",
-  },
-  {
-    id: 1,
-    name: "1",
-    src: "/images/2.png",
-  },
-  {
-    id: 2,
-    name: "2",
-    src: "/images/3.png",
-  },
-  { id: 3, name: "3", src: "/images/4.png" },
-  {
-    id: 4,
-    name: "4",
-    src: "/images/5.png",
-  },
+  { id: 0, name: "0", src: "/images/brutal.webp" },
+  { id: 1, name: "1", src: "/images/base.webp" },
+  { id: 2, name: "2", src: "/images/claude.webp" },
+  { id: 3, name: "3", src: "/images/retro.webp" },
+  { id: 4, name: "4", src: "/images/grove.webp" },
+  { id: 5, name: "5", src: "/images/clay.webp" },
 ];
 
-export function ResumeStack() {
+export default function ResumeStack() {
   const [stack, setStack] = useState(resumeImages);
   const [isSwiping, setIsSwiping] = useState(false);
   const autoSwipeTimeout = useRef(null);
@@ -65,17 +50,17 @@ export function ResumeStack() {
   }, [handleSwipeComplete]);
 
   return (
-    <div className='relative h-96 w-72 sm:h-[30rem] sm:w-96 lg:w-[26rem]'>
+    <div className='relative h-96 w-72 lg:h-[30rem] lg:w-96 xl:w-[26rem]'>
       {stack.map((card, index) => {
         const isTopCard = index === 0;
         const scaleFactor = 1 - index * 0.04;
-        const spreadFactor = index * 8;
-        const rotationAngle = index * 4;
+        const spreadFactor = index * 10;
+        const rotationAngle = index * 1.5;
 
         return (
           <motion.div
             key={card.id}
-            className='rounded-base xs:min-h-96 xs:min-w-[19rem] xs:max-w-[26rem] absolute flex size-fit max-w-[17rem] min-w-48 flex-col justify-between border bg-white p-1.5 shadow-xl sm:min-h-[30rem] sm:min-w-96 lg:min-w-[26rem]'
+            className='rounded-base xs:min-h-96 xs:min-w-[19rem] xs:max-w-[26rem] absolute flex size-fit max-w-[17rem] min-w-48 flex-col justify-between border bg-white p-1.5 shadow-xl lg:min-h-[30rem] lg:min-w-96 xl:min-w-[26rem] 2xl:max-w-[34rem] 2xl:min-w-[34rem]'
             style={{
               zIndex: stack.length - index,
             }}
@@ -87,15 +72,15 @@ export function ResumeStack() {
             }}
             drag={isTopCard ? "x" : false}
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.3}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            dragElastic={0.5}
+            transition={{ type: "spring", stiffness: 100, damping: 10 }}
             {...(isTopCard ? bind() : {})}
           >
             <Image
               src={card.src}
               alt={card.name}
-              width='415'
-              height='550'
+              width='540'
+              height='675'
               className='rounded-base pointer-events-none flex h-fit w-full object-cover'
             />
           </motion.div>

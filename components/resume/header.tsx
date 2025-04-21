@@ -13,7 +13,7 @@ interface SocialButtonProps {
 
 function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
   return (
-    <Button className='size-8' size='icon' asChild>
+    <Button className='size-6.5' size='icon' asChild>
       <a
         href={
           href.startsWith("mailto:") || href.startsWith("tel:")
@@ -24,7 +24,7 @@ function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <Icon className='size-4' aria-hidden='true' />
+        <Icon className='sm:size-4' aria-hidden='true' />
       </a>
     </Button>
   );
@@ -83,7 +83,7 @@ export function Header({
   ]);
 
   return (
-    <header className='flex items-start justify-between gap-4 md:items-center'>
+    <header className='flex items-start justify-between gap-2.5 lg:gap-0'>
       <div className='flex-1 space-y-1'>
         <h1
           className='text-foreground text-3xl font-bold text-pretty xl:text-4xl'
@@ -112,7 +112,7 @@ export function Header({
         </p>
 
         <div
-          className='text-foreground flex gap-1.5 pt-2 text-sm print:hidden'
+          className='text-foreground flex gap-1.5 pt-2 text-sm lg:gap-2 print:hidden'
           role='list'
           aria-label='Contact links'
         >
@@ -197,7 +197,7 @@ export function Header({
         </div>
       </div>
 
-      <Avatar className='size-20 md:size-28 xl:size-36' aria-hidden='true'>
+      <Avatar className='size-22 sm:size-28 xl:size-36' aria-hidden='true'>
         <AvatarImage src={picture} alt={`${header.name}'s profile picture`} />
         <AvatarFallback>
           {header.name
