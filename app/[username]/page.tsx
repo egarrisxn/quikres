@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getUserData } from "@/lib/user";
+import { getUserData } from "@/lib/user-data";
 import { FullResume } from "@/components/resume/final-resume";
 import { ThemeDropdown } from "@/components/theme-dropdown";
 

@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
-import { checkUsernameAvailability } from "@/server/redisActions";
+import { checkUsernameAvailability } from "@/server/actions";
 
-// API Response Types
 export type PostResponse = { available: boolean } | { error: string };
 
-// POST endpoint to check username availability
 export async function POST(
   request: Request
 ): Promise<NextResponse<PostResponse>> {

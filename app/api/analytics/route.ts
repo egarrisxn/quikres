@@ -1,9 +1,8 @@
 import { upstashRedis } from "@/server/redis";
-import { Resume } from "@/server/redisActions";
+import { Resume } from "@/server/actions";
 import { NextResponse } from "next/server";
 import { unstable_cache } from "next/cache";
 
-// API Response Types
 export type GetResponse =
   | {
       totalResumes: number;
@@ -53,7 +52,6 @@ const getCachedAnalytics = unstable_cache(
   }
 );
 
-// GET endpoint to fetch resume analytics
 export async function GET(): Promise<NextResponse<GetResponse>> {
   try {
     const analytics = await getCachedAnalytics();

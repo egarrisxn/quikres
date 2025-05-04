@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, XIcon } from "../icons";
-import { ResumeDataSchemaType } from "@/lib/resume";
+import { ResumeDataSchemaType } from "@/lib/resume-schema";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 

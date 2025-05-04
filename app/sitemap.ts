@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPublicUsernamesWithLiveResume } from "@/server/redisActions";
+import { getAllPublicUsernamesWithLiveResume } from "@/server/actions";
 import { BASE_URL } from "@/lib/constants";
 import { getUrl } from "@/lib/utils";
 

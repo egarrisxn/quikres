@@ -6,8 +6,8 @@ import {
   getResume,
   getUsernameById,
   storeResume,
-} from "@/server/redisActions";
-import { generateResumeObject } from "@/server/ai/generateResumeObject";
+} from "@/server/actions";
+import { generateResume } from "@/server/generate-resume";
 import { MAX_USERNAME_LENGTH } from "@/lib/constants";
 import LoadingFallback from "@/components/loading-fallback";
 import PreviewClient from "./client";
@@ -22,7 +22,7 @@ async function LLMProcessing({ userId }: { userId: string }) {
   let messageTip: string | undefined;
 
   if (!resume.resumeData) {
-    let resumeObject = await generateResumeObject(resume?.fileContent);
+    let resumeObject = await generateResume(resume?.fileContent);
 
     if (!resumeObject) {
       messageTip =

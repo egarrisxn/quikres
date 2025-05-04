@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { clerkClient } from "@clerk/nextjs/server";
-import { getResume } from "./redisActions";
+import { getResume } from "./actions";
 
 export const getCachedUser = async (userId: string) => {
   return unstable_cache(

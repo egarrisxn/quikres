@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { getResume, Resume, storeResume } from "@/server/redisActions";
+import { getResume, Resume, storeResume } from "@/server/actions";
 
-// API Response Types
 export type GetResumeResponse = { resume?: Resume } | { error: string };
 export type PostResumeResponse =
   | { success: true }
   | { error: string; details?: z.ZodError["errors"] };
 
-// GET endpoint to retrieve resume
 export async function GET(): Promise<NextResponse<GetResumeResponse>> {
   try {
     const user = await currentUser();
@@ -28,7 +26,6 @@ export async function GET(): Promise<NextResponse<GetResumeResponse>> {
   }
 }
 
-// POST endpoint to store resume
 export async function POST(
   request: Request
 ): Promise<NextResponse<PostResumeResponse>> {

@@ -1,14 +1,14 @@
-import { getResume, storeResume } from "./redisActions";
-import { scrapePdfContent } from "./scrapePdfContent";
-import { deleteS3File } from "./deleteS3File";
+import { getResume, storeResume } from "./actions";
+import { scrapedResume } from "./scraped-resume";
+import { deleteS3File } from "./delete-s3-file";
 
-export async function processPdfResume(userId: string) {
+export async function processResume(userId: string) {
   const resume = await getResume(userId);
 
   if (!resume || !resume.file?.url) return "upload";
 
   if (!resume.fileContent) {
-    const fileContent = await scrapePdfContent({
+    const fileContent = await scrapedResume({
       bucket: resume.file.bucket,
       key: resume.file.key,
     });

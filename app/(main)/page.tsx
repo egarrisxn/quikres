@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ResumeStack from "@/components/resume-stack";
+import ResumeCarousel from "@/components/resume-carousel";
 
 export default function Home() {
   return (
     <div className='grid min-h-[80dvh] w-full place-items-center'>
-      <div className='mx-auto flex max-w-5xl flex-col items-center justify-center gap-y-16 py-8 lg:flex-row lg:gap-x-2 lg:gap-y-0 lg:py-16 xl:pb-32 2xl:gap-x-12 2xl:pt-0 2xl:pb-48'>
-        <div className='w-full px-4 2xl:pl-0'>
-          <div className='mx-auto flex w-full flex-col items-center gap-y-1 px-2 pt-8 text-center lg:items-start lg:pt-0 lg:pr-0 lg:pl-8 lg:text-start 2xl:pl-0'>
+      <div className='mx-auto flex max-w-5xl flex-col items-center justify-center gap-y-16 py-8 lg:flex-row lg:gap-x-2 lg:gap-y-0 lg:py-16 2xl:gap-x-12'>
+        <div className='w-full px-4'>
+          <div className='mx-auto flex w-full flex-col items-center gap-y-1 px-2 pt-8 text-center lg:items-start lg:pt-0 lg:pl-8 lg:text-start 2xl:pl-2'>
             <span className='bg-secondary text-secondary-foreground rounded-base font-base inline-block px-2 py-1 text-xs tracking-tighter lg:px-2.5 lg:py-1.5'>
               No Ads. No Paywalls. 100% Free.
             </span>
@@ -31,9 +31,9 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className='w-full px-4 2xl:pr-8'>
-          <div className='mx-auto flex w-full flex-col items-center px-2 lg:pr-8 lg:pl-0 2xl:pr-24'>
-            <ResumeStack />
+        <div className='w-full px-4'>
+          <div className='mx-auto flex w-full flex-col items-center px-2 lg:pr-8 2xl:pr-2'>
+            <ResumeCarousel />
           </div>
         </div>
       </div>

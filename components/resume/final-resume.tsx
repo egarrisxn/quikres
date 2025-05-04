@@ -1,4 +1,4 @@
-import { ResumeData } from "@/server/redisActions";
+import { ResumeData } from "@/server/actions";
 import LoadingFallback from "../loading-fallback";
 import { Education } from "./education";
 import { Header } from "./header";

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { upstashRedis } from "./redis";
-import { ResumeDataSchema } from "../lib/resume";
+import { ResumeDataSchema } from "../lib/resume-schema";
 import { PRIVATE_ROUTES } from "../lib/constants";
 
 // Key prefixes for different types of data

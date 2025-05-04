@@ -40,7 +40,6 @@ export const metadata: Metadata = {
     "upstash-redis",
     "tanstack-query",
     "clerk",
-    "togehter.ai",
   ],
   icons: {
     icon: {
