@@ -6,13 +6,13 @@ import {
   getResume,
   getUsernameById,
   storeResume,
-} from "@/server/actions";
-import { generateResume } from "@/server/generate-resume";
+} from "@/lib/actions";
+import { generateResumeObject } from "@/lib/generateResume";
 import { MAX_USERNAME_LENGTH } from "@/lib/constants";
 import LoadingFallback from "@/components/loading-fallback";
 import PreviewClient from "./client";
 
-async function LLMProcessing({ userId }: { userId: string }) {
+const LLMProcessing = async ({ userId }: { userId: string }) => {
   const user = await currentUser();
 
   const resume = await getResume(userId);
@@ -22,7 +22,7 @@ async function LLMProcessing({ userId }: { userId: string }) {
   let messageTip: string | undefined;
 
   if (!resume.resumeData) {
-    let resumeObject = await generateResume(resume?.fileContent);
+    let resumeObject = await generateResumeObject(resume?.fileContent);
 
     if (!resumeObject) {
       messageTip =
@@ -77,7 +77,7 @@ async function LLMProcessing({ userId }: { userId: string }) {
   }
 
   return <PreviewClient messageTip={messageTip} />;
-}
+};
 
 export default async function Preview() {
   const { userId, redirectToSignIn } = await auth();

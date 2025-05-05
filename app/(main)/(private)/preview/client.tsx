@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { Eye, Edit, Save, X } from "lucide-react";
-import { ResumeData } from "@/server/actions";
+import { ResumeData } from "@/lib/actions";
 import { getUrl } from "@/lib/utils";
 import { useUserActions } from "@/hooks/use-user-actions";
 import { Button } from "@/components/ui/button";

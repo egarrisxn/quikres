@@ -1,16 +1,14 @@
 import { z } from "zod";
 import { upstashRedis } from "./redis";
-import { ResumeDataSchema } from "../lib/resume-schema";
-import { PRIVATE_ROUTES } from "../lib/constants";
+import { ResumeDataSchema } from "./resumeSchema";
+import { PRIVATE_ROUTES } from "./constants";
 
-// Key prefixes for different types of data
 const REDIS_KEYS = {
-  RESUME_PREFIX: "resume:", // Using colon is a Redis convention for namespacing
+  RESUME_PREFIX: "resume:",
   USER_ID_PREFIX: "user:id:",
   USER_NAME_PREFIX: "user:name:",
 } as const;
 
-// Define the file schema
 const FileSchema = z.object({
   name: z.string(),
   url: z.string().nullish(),
@@ -21,7 +19,6 @@ const FileSchema = z.object({
 
 const FORBIDDEN_USERNAMES = PRIVATE_ROUTES;
 
-// Define the complete resume schema
 const ResumeSchema = z.object({
   status: z.enum(["live", "draft"]).default("draft"),
   file: FileSchema.nullish(),
@@ -29,11 +26,9 @@ const ResumeSchema = z.object({
   resumeData: ResumeDataSchema.nullish(),
 });
 
-// Type inference for the resume data
 export type ResumeData = z.infer<typeof ResumeDataSchema>;
 export type Resume = z.infer<typeof ResumeSchema>;
 
-// Function to get resume data for a user
 export async function getResume(userId: string): Promise<Resume | undefined> {
   try {
     const resume = await upstashRedis.get<Resume>(
@@ -46,7 +41,6 @@ export async function getResume(userId: string): Promise<Resume | undefined> {
   }
 }
 
-// Function to store resume data for a user
 export async function storeResume(
   userId: string,
   resumeData: Resume
@@ -223,12 +217,7 @@ export const updateUsername = async (
   }
 };
 
-/**
- * Fetches all usernames that have a live resume associated with them.
- */
-export const getAllPublicUsernamesWithLiveResume = async (): Promise<
-  string[]
-> => {
+export async function getAllPublicUsernamesWithLiveResume(): Promise<string[]> {
   try {
     const keys = await upstashRedis.keys(`${REDIS_KEYS.RESUME_PREFIX}*`);
     const publicUsernames: string[] = [];
@@ -250,4 +239,4 @@ export const getAllPublicUsernamesWithLiveResume = async (): Promise<
     console.error("Error fetching public usernames with live resumes:", error);
     return [];
   }
-};
+}

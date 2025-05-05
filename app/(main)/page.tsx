@@ -24,7 +24,7 @@ export default function Home() {
               size='default'
               className='h-10 px-4 py-2.5 2xl:h-11 2xl:px-6 2xl:py-3 2xl:text-xl'
             >
-              <Link href='/upload'>
+              <Link href='/sign-in'>
                 <Sparkles className='mr-0.5' />
                 Start Creating!
               </Link>

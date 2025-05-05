@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const HeaderContactsSchema = z.object({
-  website: z.string().describe("Website/Portfolio URL").optional(),
+  website: z.string().describe("Personal website or portfolio URL").optional(),
   email: z.string().describe("Email address").optional(),
   phone: z.string().describe("Phone number").optional(),
   twitter: z.string().describe("Twitter/X username").optional(),
@@ -11,7 +11,7 @@ const HeaderContactsSchema = z.object({
 
 const HeaderSection = z.object({
   name: z.string(),
-  subheader: z.string().describe("Brief description about yourself"),
+  subheader: z.string().describe("Short description of your profile"),
   location: z
     .string()
     .describe("Location with format 'City, Country'")
@@ -49,8 +49,8 @@ const WorkExperienceSection = z.array(
 
 const EducationSection = z.array(
   z.object({
-    school: z.string().describe("School/University name"),
-    degree: z.string().describe("Degree/Certification received"),
+    school: z.string().describe("School or university name"),
+    degree: z.string().describe("Degree or certification obtained"),
     start: z.string().describe("Start year"),
     end: z.string().describe("End year"),
   })

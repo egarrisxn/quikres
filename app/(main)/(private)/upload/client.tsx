@@ -70,7 +70,7 @@ export default function UploadClient() {
               className='absolute top-2 right-2 z-10 p-1'
               disabled={isUpdating}
             >
-              <X className='text-foreground/60 hover:text-destructive/60 size-4' />
+              <X className='text-secondary-foreground/60 hover:text-destructive/60 size-4' />
             </button>
           )}
 
@@ -79,9 +79,9 @@ export default function UploadClient() {
             maxFiles={1}
             icon={
               fileState.status !== "empty" ? (
-                <FileCheck2 className='text-foreground/80 size-6' />
+                <FileCheck2 className='text-secondary-foreground/80 size-6' />
               ) : (
-                <Upload className='text-foreground/80 size-6' />
+                <Upload className='text-secondary-foreground/80 size-6' />
               )
             }
             title={
@@ -92,7 +92,7 @@ export default function UploadClient() {
               </span>
             }
             description={
-              <span className='text-foreground/60 text-center text-xs font-light'>
+              <span className='text-secondary-foreground/60 text-center text-xs font-light'>
                 {fileState.status !== "empty"
                   ? `${(fileState.file.size / 1024 / 1024).toFixed(2)} MB`
                   : "Must be in PDF format"}

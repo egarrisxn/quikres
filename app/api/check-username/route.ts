@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { checkUsernameAvailability } from "@/server/actions";
+import { checkUsernameAvailability } from "@/lib/actions";
 
 export type PostResponse = { available: boolean } | { error: string };
 

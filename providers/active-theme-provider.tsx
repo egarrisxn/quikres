@@ -2,8 +2,17 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeContext } from "@/hooks/use-theme-config";
-import { setThemeCookie } from "@/lib/utils";
-import { DEFAULT_THEME, COOKIE_NAME } from "@/lib/constants";
+
+const COOKIE_NAME = "active_theme";
+
+const setThemeCookie = (theme: string) => {
+  if (typeof window === "undefined") return;
+  document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${
+    window.location.protocol === "https:" ? "Secure;" : ""
+  }`;
+};
+
+const DEFAULT_THEME = "default";
 
 export function ActiveThemeProvider({ children }: { children: ReactNode }) {
   const [activeTheme, setActiveTheme] = useState<string>(DEFAULT_THEME);

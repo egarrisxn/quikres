@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { getUsernameById, updateUsername } from "@/server/actions";
+import { getUsernameById, updateUsername } from "@/lib/actions";
 
 export type GetResponse = { username?: string | null } | { error: string };
 export type PostResponse = { success: true } | { error: string };

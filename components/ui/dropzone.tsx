@@ -38,7 +38,7 @@ export function Dropzone({
       {...getRootProps()}
       className={cn(
         "rounded-base border-primary relative flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed p-16 text-center transition-colors",
-        isDragActive && "border-primary bg-primary/5",
+        isDragActive && "border-primary bg-secondary/5",
         (disabled || isUploading) && "cursor-not-allowed opacity-60",
         className
       )}
@@ -47,7 +47,7 @@ export function Dropzone({
 
       {/* Drag animation overlay */}
       {isDragActive && (
-        <div className='bg-background/80 absolute inset-0 z-10 flex items-center justify-center'>
+        <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
           <div className='animate-bounce p-4'>
             <FileUp className='text-primary size-16' />
           </div>
@@ -56,24 +56,24 @@ export function Dropzone({
 
       {/* Upload spinner overlay */}
       {isUploading && (
-        <div className='bg-background/80 absolute inset-0 z-10 flex items-center justify-center'>
+        <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
           <Loader2 className='text-primary size-12 animate-spin' />
         </div>
       )}
 
       {files.length > 0 ? (
         <div className='flex flex-col items-center gap-2'>
-          <div className='rounded-base bg-gray-100 p-3'>{icon}</div>
+          <div className='rounded-base bg-secondary/80 p-3'>{icon}</div>
           <div className='font-base mt-2 text-lg'>{files[0].name}</div>
-          <p className='text-sm text-gray-500'>
+          <p className='text-secondary-foreground/80 text-sm'>
             {(files[0].size / 1024 / 1024).toFixed(2)} MB
           </p>
         </div>
       ) : (
         <>
-          <div className='rounded-base bg-gray-100 p-3'>{icon}</div>
+          <div className='rounded-base bg-secondary/80 p-3'>{icon}</div>
           <h2 className='font-base mt-2 text-lg'>{title}</h2>
-          <p className='text-sm text-gray-500'>{description}</p>
+          <p className='text-secondary-foreground/80 text-sm'>{description}</p>
         </>
       )}
     </div>

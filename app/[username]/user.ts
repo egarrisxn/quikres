@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { clerkClient } from "@clerk/nextjs/server";
-import { getResume, getUserIdByUsername } from "@/server/actions";
+import { getResume, getUserIdByUsername } from "@/lib/actions";
 
 export async function getUserData(username: string) {
   const user_id = await getUserIdByUsername(username);
@@ -19,10 +19,9 @@ export async function getUserData(username: string) {
     [user_id],
     {
       tags: ["users"],
-      revalidate: 3600,
+      revalidate: 60,
     }
   );
-
   const clerkUser = await getCachedUser();
 
   return { user_id, resume, clerkUser };

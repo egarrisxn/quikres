@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ResumeDataSchemaType } from "@/lib/resume-schema";
+import { ResumeDataSchemaType } from "@/lib/resumeSchema";
 import { Section } from "@/components/ui/section";
 import { getYear } from "@/lib/utils";
 

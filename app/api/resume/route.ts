@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { getResume, Resume, storeResume } from "@/server/actions";
+import { getResume, Resume, storeResume } from "@/lib/actions";
 
 export type GetResumeResponse = { resume?: Resume } | { error: string };
 export type PostResumeResponse =

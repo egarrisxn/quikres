@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useS3Upload } from "next-s3-upload";
-import { Resume, ResumeData } from "@/server/actions";
+import { Resume, ResumeData } from "@/lib/actions";
+import { ResumeDataSchema } from "@/lib/resumeSchema";
 import { PublishStatuses } from "@/components/preview-bar";
-import { ResumeDataSchema } from "@/lib/resume-schema";
 
 // Fetch resume data
 const fetchResume = async (): Promise<{

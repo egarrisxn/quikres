@@ -1,8 +1,8 @@
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 import { pdfToText } from "pdf-ts";
-import { s3, defaultBucket } from "../lib/s3";
+import { s3, defaultBucket } from "./s3";
 
-export async function scrapedResume({
+export async function scrapePdf({
   key,
   bucket = defaultBucket,
 }: {

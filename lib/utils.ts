@@ -1,6 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { COOKIE_NAME } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -42,11 +41,4 @@ export function formatDateWithNumbers(date: Date): string {
     second: "2-digit",
     hour12: true,
   });
-}
-
-export function setThemeCookie(theme: string) {
-  if (typeof window === "undefined") return;
-  document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=31536000; SameSite=Lax; ${
-    window.location.protocol === "https:" ? "Secure;" : ""
-  }`;
 }

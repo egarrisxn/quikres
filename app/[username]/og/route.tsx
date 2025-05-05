@@ -1,6 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-import { getUserData } from "../../../lib/user-data";
+import { getUserData } from "../user";
 
 export async function GET(request: NextRequest) {
   try {

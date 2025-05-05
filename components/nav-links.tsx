@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { CheckIcon, MoonIcon, RepeatIcon, SunIcon } from "lucide-react";
-import { BASE_COLORS, PRIVATE_NAV, PUBLIC_NAV } from "@/lib/constants";
+import { BASE_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useThemeConfig } from "@/hooks/use-theme-config";
 import { Button } from "./ui/button";
@@ -21,6 +21,32 @@ import {
   NavigationMenuListItem,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+
+const PUBLIC_NAV = [
+  {
+    title: "Login",
+    href: "/sign-in",
+    description: "Sign in to create your site!",
+  },
+  {
+    title: "Sign Up",
+    href: "/sign-up",
+    description: "Sign up for free to begin!",
+  },
+];
+
+const PRIVATE_NAV = [
+  {
+    title: "Clerk Dashboard",
+    href: "/dashboard",
+    description: "Where user details live",
+  },
+  {
+    title: "Edit/Preview Resume",
+    href: "/preview",
+    description: "Finalize your website here",
+  },
+];
 
 export function NavLinks() {
   const { activeTheme, setActiveTheme } = useThemeConfig();
@@ -62,7 +88,7 @@ export function NavLinks() {
               <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
               <NavigationMenuContent className='x'>
                 <div className='w-64 p-2'>
-                  <ul className='gap--y-3 grid'>
+                  <ul className='grid gap-y-3'>
                     {PUBLIC_NAV.map((navLink) => (
                       <NavigationMenuListItem
                         key={navLink.title}
