@@ -20,7 +20,7 @@
 - **AWS S3**
 - **Upstash Redis**
 - **Clerk Authentication**
-- **Together.ai**
+- **Open**
 - **Vercel AI SDK**
 - **Vercel Deployment**
 - More coming soon...
