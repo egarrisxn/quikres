@@ -9,9 +9,9 @@ import {
   RepeatIcon,
   SunIcon,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { BASE_COLORS } from "@/lib/constants";
 import { useThemeConfig } from "@/hooks/use-theme-config";
-import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Skeleton } from "./ui/skeleton";
