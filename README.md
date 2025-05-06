@@ -8,7 +8,7 @@
 
 **Quik|Res** lets you turn your resume into a beautiful, personal website — in under a minute. No paywalls. No ads. Just fast, free resume-to-site magic.
 
- _**Note: This project was HEAVILY inspired by Self.so. Thanks for giving me the vision for Quik|Res.**_
+ _**Note: This project was inspired by Self.so. Thanks for giving me the vision for Quik|Res.**_
 
 ## 🛠️ Tech Stack
 
@@ -20,7 +20,7 @@
 - **AWS S3**
 - **Upstash Redis**
 - **Clerk Authentication**
-- **Open**
+- **OpenAI**
 - **Vercel AI SDK**
 - **Vercel Deployment**
 - More coming soon...
@@ -84,16 +84,6 @@ pnpm dev
 The easiest way to deploy Quik|Res is with **Vercel**, the creators of Next.js. Smash the button below to begin.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-
-## 🔮 Roadmap
-
-- [ ] Update Clerk to production
-- [ ] Support multiple resumes per user
-- [ ] Option to delete previous resumes
-- [ ] Option to permanently delete all data
-- [ ] Add more resume sections and social/link options
-- [ ] Tighten up this readme file
-- [ ] Update the screenshots for the manifest
 
 ## 📄 License
 
