@@ -6,7 +6,7 @@
 
 ## 🚀 What is QuikRes?
 
-**Quik|Res** lets you turn your resume into a beautiful, personal website, in under a minute. No paywalls. No ads. Just fast, free resume-to-site magic.
+**Quik|Res** lets you turn your resume into a beautiful, personal website, in under a minute. No paywalls. No ads. Just fast & free!
 
  _**Note: This project was inspired by Self.so. Thanks for giving me the vision for Quik|Res.**_
 
