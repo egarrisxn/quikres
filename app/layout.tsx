@@ -1,9 +1,10 @@
-import type { Metadata, Viewport } from "next";
+import "../styles/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE_DATA } from "@/lib/constants";
 import { Providers } from "@/providers";
-import "../styles/globals.css";
+
+import type { Metadata, Viewport } from "next";
 
 export const geistSans = Geist({
   variable: "--font-sans",
