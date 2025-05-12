@@ -1,15 +1,13 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { SITE_URL } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getUrl(username: string) {
-  const domain =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://quikres.vercel.app";
+  const domain = SITE_URL;
   return `${domain}/${username}`;
 }
 

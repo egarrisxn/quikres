@@ -1,5 +1,5 @@
-import LoadingFallback from "@/components/loading-fallback";
+import { Loading } from "@/components/ui/loading";
 
 export default function LoadingPreview() {
-  return <LoadingFallback message='' />;
+  return <Loading message='Loading Preview..' />;
 }

@@ -8,14 +8,8 @@
 @theme {
   --breakpoint-xs: 30rem;
   --breakpoint-3xl: 120rem;
-
   --animate-test: test 0s ease-out;
   --animate-bounce: bounce 1s infinite;
-  --animate-short-fade: fade 0.3s ease-in-out;
-  --animate-long-fade: fade 0.7s ease-out;
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
   @keyframes test {
     from {
       height: 0;
@@ -24,7 +18,6 @@
       height: 0;
     }
   }
-
   @keyframes bounce {
     0%,
     100% {
@@ -34,47 +27,18 @@
       transform: translateY(-20px);
     }
   }
-
-  @keyframes fade {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --font-weight-base: 500;
   --font-weight-heading: 700;
-
   --radius-base: calc(var(--radius) - 5px);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -98,9 +62,7 @@
   --color-icon: var(--icon);
   --color-hover: var(--hover);
   --color-overlay: var(--overlay);
-
   --shadow-base: var(--shadow);
-
   --spacing-boxShadowX: var(--boxShadowX);
   --spacing-boxShadowY: var(--boxShadowX);
   --spacing-reverseBoxShadowX: var(--reverseBoxShadowX);
@@ -109,7 +71,6 @@
 
 :root {
   --radius: 0.735rem;
-
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -130,9 +91,7 @@
   --ring: oklch(0.708 0 0);
   --link: oklch(0.6 0.1205 257.04);
   --overlay: oklch(0% 0 0 / 0.8);
-
   --shadow: 0.5px 0.5px 0px 0px var(--border);
-
   --boxShadowX: 0px;
   --boxShadowY: 0px;
   --reverseBoxShadowX: 0px;
@@ -181,16 +140,13 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--background) var(--foreground);
 }
-
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--background);
   border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--foreground);
 }

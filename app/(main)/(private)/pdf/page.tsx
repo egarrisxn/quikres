@@ -4,7 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { getResume, storeResume } from "@/lib/actions";
 import { scrapePdf } from "@/lib/scrapePdf";
 import { deleteS3File } from "@/lib/deleteFile";
-import LoadingFallback from "@/components/loading-fallback";
+import { Loading } from "@/components/ui/loading";
 
 export async function ProcessPdf({ userId }: { userId: string }) {
   const resume = await getResume(userId);
@@ -53,11 +53,7 @@ export default async function Pdf() {
 
   return (
     <>
-      <Suspense
-        fallback={
-          <LoadingFallback message='Reading your resume carefully...' />
-        }
-      >
+      <Suspense fallback={<Loading message='Loading PDF..' />}>
         <ProcessPdf userId={userId} />
       </Suspense>
     </>

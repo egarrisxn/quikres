@@ -1,24 +1,17 @@
-import "../styles/globals.css";
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE_DATA } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/sonner";
-import {
-  AuthProvider,
-  ClientProvider,
-  ThemeProvider,
-  ActiveThemeProvider,
-} from "@/providers";
+import { Providers } from "@/providers";
+import "../styles/globals.css";
 
-export const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+export const geistSans = Geist({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 export const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -91,27 +84,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthProvider>
-      <ClientProvider>
-        <html lang='en' suppressHydrationWarning>
-          <body
-            className={cn(
-              dmSans.variable,
-              geistMono.variable,
-              "font-sans antialiased"
-            )}
-            suppressHydrationWarning
-          >
-            <ThemeProvider>
-              <ActiveThemeProvider>
-                <main>{children}</main>
-                <Toaster richColors position='bottom-center' />
-              </ActiveThemeProvider>
-            </ThemeProvider>
-            <Analytics />
-          </body>
-        </html>
-      </ClientProvider>
-    </AuthProvider>
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
+        <Providers>
+          <main>{children}</main>
+        </Providers>
+        <Analytics />
+      </body>
+    </html>
   );
 }

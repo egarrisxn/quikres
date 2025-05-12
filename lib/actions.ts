@@ -60,12 +60,6 @@ export async function storeResume(
   }
 }
 
-/**
- * Create a new user with bidirectional lookup
- * @param userId Unique user identifier
- * @param username Unique username
- * @returns Promise resolving to boolean indicating success
- */
 export const createUsernameLookup = async ({
   userId,
   username,
@@ -77,17 +71,14 @@ export const createUsernameLookup = async ({
   if (FORBIDDEN_USERNAMES.includes(username.toLowerCase())) {
     return false;
   }
-
   // Check if username or user_id already exists
   const [usernameExists, userIdExists] = await Promise.all([
     upstashRedis.exists(`${REDIS_KEYS.USER_NAME_PREFIX}${username}`),
     upstashRedis.exists(`${REDIS_KEYS.USER_ID_PREFIX}${userId}`),
   ]);
-
   if (usernameExists || userIdExists) {
     return false;
   }
-
   // Create mappings in both directions
   const transaction = upstashRedis.multi();
   transaction.set(`${REDIS_KEYS.USER_ID_PREFIX}${userId}`, username);
@@ -102,22 +93,12 @@ export const createUsernameLookup = async ({
   }
 };
 
-/**
- * Retrieve username by user ID
- * @param userId User ID to look up
- * @returns Promise resolving to username or null
- */
 export const getUsernameById = async (
   userId: string
 ): Promise<string | null> => {
   return await upstashRedis.get(`${REDIS_KEYS.USER_ID_PREFIX}${userId}`);
 };
 
-/**
- * Retrieve user ID by username
- * @param username Username to look up
- * @returns Promise resolving to user ID or null
- */
 export const getUserIdByUsername = async (
   username: string
 ): Promise<string | null> => {
@@ -136,18 +117,12 @@ export const checkUsernameAvailability = async (
   return { available: !userId };
 };
 
-/**
- * Delete a user by either user ID or username
- * @param opts Object containing either userId or username
- * @returns Promise resolving to boolean indicating success
- */
 export const deleteUser = async (opts: {
   userId?: string;
   username?: string;
 }): Promise<boolean> => {
   let userId: string | null = null;
   let username: string | null = null;
-
   // Determine lookup method based on input
   if (opts.userId) {
     username = await getUsernameById(opts.userId);
@@ -158,16 +133,13 @@ export const deleteUser = async (opts: {
   } else {
     return false;
   }
-
   // Use the found values if not provided
   userId = userId || opts.userId!;
   username = username || opts.username!;
-
   // Delete both mappings
   const transaction = upstashRedis.multi();
   transaction.del(`${REDIS_KEYS.USER_ID_PREFIX}${userId}`);
   transaction.del(`${REDIS_KEYS.USER_NAME_PREFIX}${username}`);
-
   try {
     const results = await transaction.exec();
     return results.every((result) => result === 1);
@@ -177,12 +149,6 @@ export const deleteUser = async (opts: {
   }
 };
 
-/**
- * Update username for a given user ID
- * @param userId User ID to update
- * @param newUsername New username
- * @returns Promise resolving to boolean indicating success
- */
 export const updateUsername = async (
   userId: string,
   newUsername: string
@@ -191,23 +157,19 @@ export const updateUsername = async (
   if (FORBIDDEN_USERNAMES.includes(newUsername.toLowerCase())) {
     return false;
   }
-
   // Get current username
   const currentUsername = await getUsernameById(userId);
   if (!currentUsername) return false;
-
   // Check if new username is already taken
   const newUsernameExists = await upstashRedis.exists(
     `${REDIS_KEYS.USER_NAME_PREFIX}${newUsername}`
   );
   if (newUsernameExists) return false;
-
   // Create transaction to update mappings
   const transaction = upstashRedis.multi();
   transaction.del(`${REDIS_KEYS.USER_NAME_PREFIX}${currentUsername}`);
   transaction.set(`${REDIS_KEYS.USER_ID_PREFIX}${userId}`, newUsername);
   transaction.set(`${REDIS_KEYS.USER_NAME_PREFIX}${newUsername}`, userId);
-
   try {
     const results = await transaction.exec();
     return results.every((result) => result === "OK" || result === 1);
@@ -221,11 +183,9 @@ export async function getAllPublicUsernamesWithLiveResume(): Promise<string[]> {
   try {
     const keys = await upstashRedis.keys(`${REDIS_KEYS.RESUME_PREFIX}*`);
     const publicUsernames: string[] = [];
-
     for (const resumeKey of keys) {
       const userId = resumeKey.split(":")[1];
       const resumeData = await getResume(userId);
-
       if (resumeData?.status === "live") {
         const username = await getUsernameById(userId);
         if (username) {
@@ -233,7 +193,6 @@ export async function getAllPublicUsernamesWithLiveResume(): Promise<string[]> {
         }
       }
     }
-
     return publicUsernames;
   } catch (error) {
     console.error("Error fetching public usernames with live resumes:", error);

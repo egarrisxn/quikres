@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { useDropzone, type DropzoneOptions } from "react-dropzone";
+import { FileUp } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FileUp, Loader2 } from "lucide-react";
+import { Spinner } from "./spinner";
 
 interface DropzoneProps extends Omit<DropzoneOptions, "disabled"> {
   className?: string;
@@ -45,7 +46,6 @@ export function Dropzone({
     >
       <input {...getInputProps()} />
 
-      {/* Drag animation overlay */}
       {isDragActive && (
         <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
           <div className='animate-bounce p-4'>
@@ -54,10 +54,9 @@ export function Dropzone({
         </div>
       )}
 
-      {/* Upload spinner overlay */}
       {isUploading && (
         <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
-          <Loader2 className='text-primary size-12 animate-spin' />
+          <Spinner className='size-12' />
         </div>
       )}
 

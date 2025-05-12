@@ -5,11 +5,11 @@ import { toast } from "sonner";
 import { LinkIcon, Pencil } from "lucide-react";
 import { cn, getUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import UsernameEditorView from "./username-editor";
+import UsernameEditor from "./username-editor";
 
 export type PublishStatuses = "draft" | "live";
 
-export default function PreviewBar({
+export function PreviewBar({
   initialUsername = "",
   prefix = "quikres.vercel.app/",
   status,
@@ -26,7 +26,6 @@ export default function PreviewBar({
 
   const handleStatusChange = async () => {
     if (onStatusChange) {
-      // Toggle the status
       const newStatus = status === "draft" ? "live" : "draft";
       await onStatusChange(newStatus);
     }
@@ -52,7 +51,7 @@ export default function PreviewBar({
               {prefix}
             </p>
           </div>
-          <div className='rounded-base border-input text-foreground dark:text-background flex w-56 flex-row items-center overflow-hidden bg-white md:w-72'>
+          <div className='rounded-base border-input flex w-56 flex-row items-center overflow-hidden bg-white text-black md:w-72'>
             <span className='w-fit flex-1 truncate border-none bg-transparent px-3 py-1.5 text-sm tracking-tight outline-hidden focus:ring-0 md:tracking-normal'>
               {initialUsername}
             </span>
@@ -137,7 +136,7 @@ export default function PreviewBar({
         </div>
       </div>
 
-      <UsernameEditorView
+      <UsernameEditor
         initialUsername={initialUsername}
         isOpen={isEditorOpen}
         onClose={() => setIsEditorOpen(false)}

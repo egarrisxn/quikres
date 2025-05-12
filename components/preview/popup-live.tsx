@@ -15,22 +15,21 @@ import {
   DrawerDescription,
 } from "@/components/ui/drawer";
 
-export const PopupLive = ({
+export function PopupLive({
   isOpen,
   onClose,
-  webBASE_URL,
+  websiteUrl,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  webBASE_URL: string;
-}) => {
+  websiteUrl: string;
+}) {
   const isMobile = useIsMobile();
 
   const mainContent = useMemo(() => {
     return (
       <div className='rounded-base relative bg-white shadow'>
         <div className='flex h-full flex-col items-center justify-center gap-5 p-6'>
-          {/* Site live icon */}
           <Radio className='h-[41px] w-[52px]' />
 
           <h3 className='font-base mb-1 font-sans text-2xl'>
@@ -39,12 +38,12 @@ export const PopupLive = ({
 
           <div className='flex w-full flex-col gap-4 md:gap-2'>
             <div className='rounded-base border-border bg-secondary text-foreground min-h-10 grow border p-2 px-3 text-sm'>
-              {webBASE_URL}
+              {websiteUrl}
             </div>
             <div className='grid grid-cols-2 gap-4 md:gap-2'>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(webBASE_URL);
+                  navigator.clipboard.writeText(websiteUrl);
                   toast.success("Copied link to your website");
                 }}
                 className='hover:bg-hover rounded-base flex flex-row items-center justify-center gap-2 p-2 text-white'
@@ -54,7 +53,7 @@ export const PopupLive = ({
                 <span className='text-white'>Copy URL</span>
               </button>
               <a
-                href={webBASE_URL}
+                href={websiteUrl}
                 target='_blank'
                 rel='noreferrer'
                 className='hover:bg-hover rounded-base flex flex-row items-center justify-center gap-2 p-2 text-white'
@@ -67,7 +66,7 @@ export const PopupLive = ({
         </div>
       </div>
     );
-  }, [webBASE_URL]);
+  }, [websiteUrl]);
 
   if (!isMobile) {
     return (
@@ -105,4 +104,4 @@ export const PopupLive = ({
       </DrawerContent>
     </Drawer>
   );
-};
+}

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { ResumeDataSchemaType } from "@/lib/resumeSchema";
-import { Section } from "@/components/ui/section";
 import { getYear } from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 
 function EducationItem({
   education,
@@ -10,7 +10,6 @@ function EducationItem({
 }) {
   const { school, start, end, degree } = education;
 
-  // Skip rendering if required fields are missing
   if (!school || !degree || !start) {
     return null;
   }
@@ -52,7 +51,6 @@ export function Education({
 }: {
   educations: ResumeDataSchemaType["education"];
 }) {
-  // Filter out invalid education entries
   const validEducations = useMemo(
     () => educations.filter((edu) => edu.school && edu.degree && edu.start),
     [educations]

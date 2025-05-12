@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { ResumeData } from "@/lib/actions";
-import { Input } from "../../ui/input";
-import { Label } from "../../ui/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { AddSkillDialog } from "./add-skill-dialog";
 import { AddButton } from "./add-button";
 import { WorkExperienceField } from "./experience-field";
 import { EducationField } from "./education-field";
 import { SkillField } from "./skills-field";
-import { AddSkillDialog } from "./add-skill-dialog";
-import { Textarea } from "@/components/ui/textarea";
 
-export const EditResume = ({
+export function EditResume({
   resume,
   onChangeResume,
 }: {
   resume: ResumeData;
   onChangeResume: (newResume: ResumeData) => void;
-}) => {
+}) {
   const [isAddSkillDialogOpen, setIsAddSkillDialogOpen] = useState(false);
 
   const handleAddSkill = (skillToAdd: string) => {
@@ -380,4 +380,4 @@ export const EditResume = ({
       </div>
     </section>
   );
-};
+}

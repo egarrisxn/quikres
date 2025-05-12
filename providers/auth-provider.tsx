@@ -1,5 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
-import { BASE_URL } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     <ClerkProvider
       appearance={{
         layout: {
-          logoImageUrl: `${BASE_URL}/icons/icon.png`,
-          logoLinkUrl: `${BASE_URL}`,
+          logoImageUrl: `${SITE_URL}/icons/icon.png`,
+          logoLinkUrl: `${SITE_URL}`,
           unsafe_disableDevelopmentModeWarnings: true,
         },
         variables: {

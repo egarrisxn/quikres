@@ -1,7 +1,6 @@
-import React from "react";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
-import { DateRangePicker } from "../../ui/date-range-picker";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 
 interface Education {
   degree: string;
@@ -10,19 +9,17 @@ interface Education {
   end: string;
 }
 
-interface EducationFieldProps {
-  edu: Education;
-  index: number;
-  onUpdate: (index: number, updatedEdu: Education) => void;
-  onDelete: (index: number) => void;
-}
-
-export const EducationField: React.FC<EducationFieldProps> = ({
+export function EducationField({
   edu,
   index,
   onUpdate,
   onDelete,
-}) => {
+}: {
+  edu: Education;
+  index: number;
+  onUpdate: (index: number, updatedEdu: Education) => void;
+  onDelete: (index: number) => void;
+}) {
   return (
     <div className='group rounded-base relative border p-4'>
       <button
@@ -103,4 +100,4 @@ export const EducationField: React.FC<EducationFieldProps> = ({
       </div>
     </div>
   );
-};
+}

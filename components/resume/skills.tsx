@@ -4,12 +4,13 @@ import { Section } from "@/components/ui/section";
 
 type Skills = readonly string[];
 
-interface SkillsProps {
+export function Skills({
+  skills,
+  className,
+}: {
   skills: Skills;
   className?: string;
-}
-
-export function Skills({ skills, className }: SkillsProps) {
+}) {
   return (
     <Section className={className}>
       <h2 className='text-foreground text-xl font-bold' id='skills-section'>

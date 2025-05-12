@@ -1,14 +1,13 @@
 import { useMemo } from "react";
 import { ResumeDataSchemaType } from "@/lib/resumeSchema";
-import { Section } from "@/components/ui/section";
 import { getMonth, getYear } from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 
 export function WorkExperience({
   work,
 }: {
   work: ResumeDataSchemaType["workExperience"];
 }) {
-  // Filter out invalid work experiences and pre-format dates
   const validWork = useMemo(() => {
     return work
       .filter(

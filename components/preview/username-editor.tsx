@@ -3,36 +3,34 @@
 import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { toast } from "sonner";
-import { MAX_USERNAME_LENGTH } from "@/lib/constants";
 import { useUserActions } from "@/hooks/use-user-actions";
-import { Button } from "./ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { MAX_USERNAME_LENGTH } from "@/lib/constants";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "./ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "./ui/drawer";
-import { Label } from "./ui/label";
-import { useIsMobile } from "./ui/use-mobile";
+} from "@/components/ui/drawer";
+import { Label } from "@/components/ui/label";
 
-interface UsernameEditorContentProps {
+function UsernameContent({
+  initialUsername,
+  onClose,
+}: {
   initialUsername: string;
   onClose: () => void;
   prefix?: string;
-}
-
-function UsernameEditorContent({
-  initialUsername,
-  onClose,
-}: UsernameEditorContentProps) {
+}) {
   const [newUsername, setNewUsername] = useState<string>(initialUsername);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { updateUsernameMutation, checkUsernameMutation } = useUserActions();
@@ -45,12 +43,10 @@ function UsernameEditorContent({
 
   useEffect(() => {
     if (!isInitialUsername && newUsername) {
-      // Clear existing timer
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);
       }
 
-      // Set new timer
       debounceTimerRef.current = setTimeout(() => {
         checkUsernameMutation.mutateAsync(newUsername);
       }, 500);
@@ -83,7 +79,6 @@ function UsernameEditorContent({
 
   return (
     <div className='flex flex-col gap-4 py-4'>
-      {/* Current Username (Disabled) */}
       <div className='flex flex-col gap-2'>
         <Label htmlFor='current-username'>Current Username</Label>
         <div className='border-input rounded-base w-full overflow-hidden border-[0.5px] bg-white'>
@@ -97,7 +92,6 @@ function UsernameEditorContent({
         </div>
       </div>
 
-      {/* New Username Input */}
       <div className='flex flex-col gap-2'>
         <Label htmlFor='new-username'>New Username</Label>
         <div className='border-input rounded-base w-full overflow-hidden border-[0.5px] bg-white'>
@@ -162,7 +156,7 @@ function UsernameEditorContent({
   );
 }
 
-export default function UsernameEditorView({
+export default function UsernameEditor({
   initialUsername,
   isOpen,
   onClose,
@@ -188,7 +182,7 @@ export default function UsernameEditorView({
               This is where you can edit your username.
             </DialogDescription>
           </DialogHeader>
-          <UsernameEditorContent
+          <UsernameContent
             initialUsername={initialUsername}
             onClose={onClose}
             prefix={prefix}
@@ -207,7 +201,7 @@ export default function UsernameEditorView({
             This is where you can edit your username.
           </DrawerDescription>
         </DrawerHeader>
-        <UsernameEditorContent
+        <UsernameContent
           initialUsername={initialUsername}
           onClose={onClose}
           prefix={prefix}

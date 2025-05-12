@@ -2,22 +2,23 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { CheckIcon, MoonIcon, RepeatIcon, SunIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
+import { useThemeConfig } from "@/hooks/use-theme-config";
 import { BASE_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { useThemeConfig } from "@/hooks/use-theme-config";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Skeleton } from "./ui/skeleton";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import { Skeleton } from "../ui/skeleton";
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "../ui/navigation-menu";
+import { SunIcon, MoonIcon } from "@/components/icons";
 
-export function ThemeDropdown() {
+export default function ThemeDropdown() {
   const { activeTheme, setActiveTheme } = useThemeConfig();
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme: theme } = useTheme();
@@ -32,27 +33,8 @@ export function ThemeDropdown() {
         <NavigationMenuItem>
           <NavigationMenuTrigger className='px-0'>Theme</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className='w-64 p-2'>
+            <div className='w-48 p-2'>
               <div className='w-full'>
-                <div className='flex items-start pt-4 md:pt-0'>
-                  <div className='w-full max-w-44 space-y-1.5'>
-                    <div className='text-secondary-foreground leading-none font-semibold tracking-tight'>
-                      Theme Library
-                    </div>
-                    <div className='text-muted-foreground text-xs'>
-                      Choose the perfect theme and mode for your website.
-                    </div>
-                  </div>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    className='rounded-base ml-auto'
-                    onClick={() => setTheme("system")}
-                  >
-                    <RepeatIcon />
-                    <span className='sr-only'>Reset</span>
-                  </Button>
-                </div>
                 <div className='flex flex-1 flex-col gap-2 md:gap-4'>
                   <div className='space-y-1.5'>
                     <Label className='text-xs'>Color</Label>
@@ -60,7 +42,7 @@ export function ThemeDropdown() {
                       {BASE_COLORS.map((color) =>
                         mounted ? (
                           <Button
-                            variant={"outline"}
+                            variant='outline'
                             size='sm'
                             key={color.name}
                             onClick={() => setActiveTheme(color.name)}
@@ -98,41 +80,23 @@ export function ThemeDropdown() {
                   </div>
                   <div className='space-y-1.5'>
                     <Label className='text-xs'>Mode</Label>
-                    <div className='grid grid-cols-2 gap-2'>
+                    <div className='grid w-full'>
                       {mounted ? (
                         <>
                           <Button
-                            variant={"outline"}
+                            variant='outline'
                             size='sm'
                             onClick={() =>
                               setTheme(theme === "dark" ? "light" : "dark")
                             }
-                            className={cn(
-                              theme !== "dark" &&
-                                "border-primary dark:border-primary border-2"
-                            )}
                           >
-                            <SunIcon className='mr-0.5 size-4.5 -translate-x-1' />
-                            Light
-                          </Button>
-                          <Button
-                            variant={"outline"}
-                            size='sm'
-                            onClick={() =>
-                              setTheme(theme === "light" ? "dark" : "light")
-                            }
-                            className={cn(
-                              theme === "dark" &&
-                                "border-primary dark:border-primary border-2"
-                            )}
-                          >
-                            <MoonIcon className='mr-0.5 size-4.5 -translate-x-1' />
-                            Dark
+                            <SunIcon /> Light
+                            <span className='px-1.5'>|</span>
+                            <MoonIcon /> Dark
                           </Button>
                         </>
                       ) : (
                         <>
-                          <Skeleton className='h-8 w-full' />
                           <Skeleton className='h-8 w-full' />
                         </>
                       )}

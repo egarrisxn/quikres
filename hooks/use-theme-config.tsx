@@ -1,13 +1,8 @@
 import { createContext, useContext } from "react";
 
-type ThemeContextType = {
-  activeTheme: string;
-  setActiveTheme: (theme: string) => void;
-};
-
-export const ThemeContext = createContext<ThemeContextType | undefined>(
-  undefined
-);
+export const ThemeContext = createContext<
+  { activeTheme: string; setActiveTheme: (theme: string) => void } | undefined
+>(undefined);
 
 export function useThemeConfig() {
   const context = useContext(ThemeContext);

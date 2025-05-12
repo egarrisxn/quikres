@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Input } from "../../ui/input";
-import { Label } from "../../ui/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -9,20 +9,18 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "../../ui/dialog";
-import { Button } from "../../ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
-interface AddSkillDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onAddSkill: (skill: string) => void;
-}
-
-export const AddSkillDialog: React.FC<AddSkillDialogProps> = ({
+export function AddSkillDialog({
   open,
   onOpenChange,
   onAddSkill,
-}) => {
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onAddSkill: (skill: string) => void;
+}) {
   const [skillInput, setSkillInput] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -67,4 +65,4 @@ export const AddSkillDialog: React.FC<AddSkillDialogProps> = ({
       </DialogContent>
     </Dialog>
   );
-};
+}

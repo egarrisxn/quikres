@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { BASE_URL } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 
 export default function robots(): MetadataRoute.Robots {
   if (
@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/preview/", "/upload/"],
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

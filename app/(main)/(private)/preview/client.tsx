@@ -19,10 +19,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import LoadingFallback from "@/components/loading-fallback";
-import PreviewBar from "@/components/preview-bar";
-import { PopupLive } from "@/components/popup-live";
-import { FullResume } from "@/components/resume/final-resume";
+import { Loading } from "@/components/ui/loading";
+import { PreviewBar } from "@/components/preview/preview-bar";
+import { PopupLive } from "@/components/preview/popup-live";
+import { FinalResume } from "@/components/resume/final-resume";
 import { EditResume } from "@/components/resume/editing/edit-resume";
 
 export default function PreviewClient({ messageTip }: { messageTip?: string }) {
@@ -68,12 +68,10 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
   };
 
   const handleDiscardChanges = () => {
-    // Show confirmation dialog instead of immediately discarding
     setShowDiscardConfirmation(true);
   };
 
   const confirmDiscardChanges = () => {
-    // Reset to original data
     if (resumeQuery.data?.resume?.resumeData) {
       setLocalResumeData(resumeQuery.data?.resume?.resumeData);
     }
@@ -94,7 +92,7 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
     !usernameQuery.data ||
     !localResumeData
   ) {
-    return <LoadingFallback message='Loading...' />;
+    return <Loading message='Loading Preview..' />;
   }
 
   const CustomLiveToast = () => (
@@ -254,7 +252,7 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
               onChangeResume={handleResumeChange}
             />
           ) : (
-            <FullResume
+            <FinalResume
               resume={localResumeData}
               profilePicture={user?.imageUrl}
             />
@@ -284,7 +282,7 @@ export default function PreviewClient({ messageTip }: { messageTip?: string }) {
 
         <PopupLive
           isOpen={showModalSiteLive}
-          webBASE_URL={getUrl(usernameQuery.data.username)}
+          websiteUrl={getUrl(usernameQuery.data.username)}
           onClose={() => {
             setModalSiteLive(false);
           }}

@@ -9,12 +9,11 @@ import {
 } from "@/lib/actions";
 import { generateResumeObject } from "@/lib/generateResume";
 import { MAX_USERNAME_LENGTH } from "@/lib/constants";
-import LoadingFallback from "@/components/loading-fallback";
+import { Loading } from "@/components/ui/loading";
 import PreviewClient from "./client";
 
 const LLMProcessing = async ({ userId }: { userId: string }) => {
   const user = await currentUser();
-
   const resume = await getResume(userId);
 
   if (!resume?.fileContent || !resume.file) redirect("/upload");
@@ -49,7 +48,6 @@ const LLMProcessing = async ({ userId }: { userId: string }) => {
     resume.resumeData = resumeObject;
   }
 
-  // we set the username only if it wasn't already set for this user meaning it's new user
   const foundUsername = await getUsernameById(userId);
 
   const saltLength = 6;
@@ -86,11 +84,7 @@ export default async function Preview() {
 
   return (
     <>
-      <Suspense
-        fallback={
-          <LoadingFallback message='Creating your personal website...' />
-        }
-      >
+      <Suspense fallback={<Loading message='Loading Preview..' />}>
         <LLMProcessing userId={userId} />
       </Suspense>
     </>

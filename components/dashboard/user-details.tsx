@@ -15,7 +15,7 @@ function Row({
   return (
     <div className='relative grid h-[2.125rem] grid-cols-2 items-center'>
       <span className='block flex-shrink-0 text-xs font-semibold'>{desc}</span>
-      <span className='relative block font-mono text-xs text-slate-500'>
+      <span className='relative block font-mono text-xs'>
         <span className='block w-full truncate'>{value}</span>
         {children}
       </span>
@@ -32,27 +32,18 @@ export function UserDetails() {
 
   return (
     <div className='relative'>
-      <div className='bg-secondary rounded-base shadow-base mx-auto max-w-[22rem] p-8 sm:max-w-[28rem] lg:max-w-[34rem] 2xl:max-w-[40rem]'>
-        <div className='mb-6 flex flex-col items-center gap-2'>
-          <div className='relative flex w-full justify-center'>
-            <img
-              src={user.imageUrl}
-              alt='user Image'
-              className='size-20 rounded-full'
-            />
-          </div>
-          {user.firstName && user.lastName ? (
-            <h1 className='relative w-full text-center text-[1.0625rem] font-semibold'>
-              {user.firstName} {user.lastName}
-            </h1>
-          ) : (
-            <div className='h-4' />
-          )}
+      <div className='bg-secondary text-secondary-foreground rounded-base border-border shadow-base mx-auto max-w-[22rem] border-2 p-8 sm:max-w-[28rem] lg:max-w-[34rem] 2xl:max-w-[40rem]'>
+        <div className='relative flex w-full items-center justify-center'>
+          <img
+            src={user.imageUrl}
+            alt='user Image'
+            className='border-background size-24 rounded-full border-2'
+          />
         </div>
         <h2 className='text-secondary-foreground mt-4 mb-2 text-[0.9375rem] font-semibold'>
           User details
         </h2>
-        <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
+        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
           <Row desc='Email' value={user.emailAddresses[0].emailAddress}>
             <span className='sr-only'>Email</span>
           </Row>
@@ -69,7 +60,7 @@ export function UserDetails() {
         <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
           Session details
         </h2>
-        <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
+        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
           <Row desc='Session ID' value={session.id}>
             <span className='sr-only'>Session ID</span>
           </Row>
@@ -94,7 +85,7 @@ export function UserDetails() {
             <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
               Organization detail
             </h2>
-            <div className='rounded-base bg-secondary-foreground divide-secondary text-secondary divide-y px-2.5'>
+            <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
               <Row desc='Organization ID' value={organization.id}>
                 <span className='sr-only'>Organization ID</span>
               </Row>

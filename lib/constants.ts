@@ -1,7 +1,16 @@
+// Internal API Requests
 export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
     : "https://quikres.vercel.app";
+
+// SEO & Metadata
+export const SITE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : (process?.env?.NEXT_PUBLIC_SITE_URL ??
+      process?.env?.NEXT_PUBLIC_VERCEL_URL ??
+      "https://quikres.vercel.app");
 
 export const SITE_DATA: {
   title: string;
@@ -14,8 +23,8 @@ export const SITE_DATA: {
 } = {
   title: "Quik|Res",
   description: "A simple resume builder for everyone!",
-  url: BASE_URL,
-  og: `${BASE_URL}/images/og.png`,
+  url: SITE_URL,
+  og: `${SITE_URL}/images/og.png`,
   alt: "A bright pink background with big 3D styled letters Q and D together to form the Quik|Res logo.",
   handle: "@eg__xo",
   locale: "en_US",

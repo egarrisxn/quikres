@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Dropzone } from "@/components/ui/dropzone";
-import { Spinner } from "@/components/spinner";
-import LoadingFallback from "@/components/loading-fallback";
+import { Spinner } from "@/components/ui/spinner";
+import { Loading } from "@/components/ui/loading";
 
 type FileState =
   | { status: "empty" }
@@ -28,7 +28,6 @@ export default function UploadClient() {
 
   const resume = resumeQuery.data?.resume;
 
-  // Update fileState whenever resume changes
   useEffect(() => {
     if (resume?.file?.url && resume.file.name && resume.file.size) {
       setFileState({
@@ -51,7 +50,7 @@ export default function UploadClient() {
   };
 
   if (resumeQuery.isLoading) {
-    return <LoadingFallback message='Loading...' />;
+    return <Loading message='Loading Upload..' />;
   }
 
   const isUpdating = resumeQuery.isPending || uploadResumeMutation.isPending;
@@ -115,12 +114,12 @@ export default function UploadClient() {
           >
             {isUpdating ? (
               <>
-                <Spinner className='mr-1' />
+                <Spinner className='mr-1 size-6' />
                 Processing...
               </>
             ) : (
               <>
-                <Sparkles className='mr-0.5' />
+                <Sparkles className='mr-0.5 size-6' />
                 Generate Now!
               </>
             )}

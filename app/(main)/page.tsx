@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ResumeCarousel from "@/components/resume-carousel";
+import ResumeCarousel from "@/components/landing/resume-carousel";
 
 export default function Home() {
   return (

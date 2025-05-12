@@ -1,12 +1,13 @@
 import { ResumeDataSchemaType } from "@/lib/resumeSchema";
 import { Section } from "../ui/section";
 
-interface AboutProps {
+export function Summary({
+  summary,
+  className,
+}: {
   summary: ResumeDataSchemaType["summary"];
   className?: string;
-}
-
-export function Summary({ summary, className }: AboutProps) {
+}) {
   return (
     <Section className={className}>
       <h2 className='text-foreground text-xl font-bold' id='about-section'>

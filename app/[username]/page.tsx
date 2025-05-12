@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ThemeDropdown } from "@/components/theme-dropdown";
-import { FullResume } from "@/components/resume/final-resume";
+import ThemeDropdown from "@/components/global/theme-dropdown";
+import { FinalResume } from "@/components/resume/final-resume";
 import { getUserData } from "./user";
+
+import type { Metadata } from "next";
 
 export async function generateMetadata({
   params,
@@ -86,7 +87,7 @@ export default async function ProfilePage({
           <ThemeDropdown />
         </header>
         <section className='flex flex-col'>
-          <FullResume
+          <FinalResume
             resume={resume?.resumeData}
             profilePicture={profilePicture}
           />

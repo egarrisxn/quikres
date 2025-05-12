@@ -1,12 +1,12 @@
 import { ResumeData } from "@/lib/actions";
-import LoadingFallback from "../loading-fallback";
+import { Loading } from "../ui/loading";
 import { Education } from "./education";
 import { Header } from "./header";
 import { Skills } from "./skills";
 import { Summary } from "./summary";
 import { WorkExperience } from "./experience";
 
-export const FullResume = ({
+export const FinalResume = ({
   resume,
   profilePicture,
 }: {
@@ -14,7 +14,7 @@ export const FullResume = ({
   profilePicture?: string;
 }) => {
   if (!resume) {
-    return <LoadingFallback message='Loading Resume...' />;
+    return <Loading message='Loading Resume..' />;
   }
 
   return (
@@ -29,7 +29,7 @@ export const FullResume = ({
 
         <WorkExperience work={resume?.workExperience} />
 
-        <Education educations={resume.education} />
+        <Education educations={resume?.education} />
 
         <Skills skills={resume.header.skills} />
       </div>

@@ -6,14 +6,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>;
-
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
-}: CalendarProps) {
+}: React.ComponentProps<typeof DayPicker>) {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -27,14 +25,14 @@ function Calendar({
         caption:
           "flex justify-center pt-1 relative items-center w-full text-primary-foreground",
         caption_label: "text-sm font-heading",
-        nav: "gap-1 flex items-center",
+        nav: "flex items-center ",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "size-7 bg-transparent p-0"
+          "size-7 bg-transparent p-0 "
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
-        table: "w-full border-collapse space-y-1",
+        table: "w-full border-collapse space-x-1",
         head_row: "flex",
         head_cell:
           "text-primary-foreground rounded-base w-9 font-base text-[0.8rem]",

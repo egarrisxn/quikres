@@ -1,25 +1,20 @@
-import React from "react";
-
-interface SkillFieldProps {
-  skill: string;
-  index: number;
-  onUpdate: (index: number, updatedSkill: string) => void;
-  onDelete: (index: number) => void;
-}
-
-export const SkillField: React.FC<SkillFieldProps> = ({
+export function SkillField({
   skill,
   index,
   onUpdate,
   onDelete,
-}) => {
+}: {
+  skill: string;
+  index: number;
+  onUpdate: (index: number, updatedSkill: string) => void;
+  onDelete: (index: number) => void;
+}) {
   return (
     <div className='group bg-primary text-primary-foreground [a&]:hover:bg-primary/90 font-base rounded-base relative flex w-fit items-center gap-1 border border-transparent px-3 py-1 transition-[color,box-shadow]'>
       <div
         contentEditable
         suppressContentEditableWarning
         onBlur={(e) => {
-          // Trim whitespace from both ends to prevent inconsistencies
           const trimmedSkill = (e.currentTarget.textContent || "").trim();
           onUpdate(index, trimmedSkill);
         }}
@@ -48,4 +43,4 @@ export const SkillField: React.FC<SkillFieldProps> = ({
       </button>
     </div>
   );
-};
+}

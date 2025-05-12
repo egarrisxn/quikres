@@ -1,8 +1,7 @@
-import React from "react";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
-import { DateRangePicker } from "../../ui/date-range-picker";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 
 interface WorkExperience {
   title: string;
@@ -15,19 +14,17 @@ interface WorkExperience {
   end?: string | null;
 }
 
-interface WorkExperienceFieldProps {
-  work: WorkExperience;
-  index: number;
-  onUpdate: (index: number, updatedWork: WorkExperience) => void;
-  onDelete: (index: number) => void;
-}
-
-export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
+export function WorkExperienceField({
   work,
   index,
   onUpdate,
   onDelete,
-}) => {
+}: {
+  work: WorkExperience;
+  index: number;
+  onUpdate: (index: number, updatedWork: WorkExperience) => void;
+  onDelete: (index: number) => void;
+}) {
   return (
     <div className='group rounded-base relative border p-4'>
       <button
@@ -57,12 +54,9 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
           <Input
             id={`work-title-${index}`}
             value={work.title}
-            onChange={(e) => {
-              onUpdate(index, {
-                ...work,
-                title: e.target.value,
-              });
-            }}
+            onChange={(e) =>
+              onUpdate(index, { ...work, title: e.target.value })
+            }
             placeholder='Job Title'
             required
           />
@@ -78,12 +72,9 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
           <Input
             id={`work-company-${index}`}
             value={work.company}
-            onChange={(e) => {
-              onUpdate(index, {
-                ...work,
-                company: e.target.value,
-              });
-            }}
+            onChange={(e) =>
+              onUpdate(index, { ...work, company: e.target.value })
+            }
             placeholder='Company'
             required
           />
@@ -99,12 +90,9 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
           <Input
             id={`work-location-${index}`}
             value={work.location}
-            onChange={(e) => {
-              onUpdate(index, {
-                ...work,
-                location: e.target.value,
-              });
-            }}
+            onChange={(e) =>
+              onUpdate(index, { ...work, location: e.target.value })
+            }
             placeholder='Location'
             required
           />
@@ -115,18 +103,10 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
           <DateRangePicker
             startDate={work.start}
             endDate={work.end}
-            onStartDateChange={(date) => {
-              onUpdate(index, {
-                ...work,
-                start: date,
-              });
-            }}
-            onEndDateChange={(date) => {
-              onUpdate(index, {
-                ...work,
-                end: date,
-              });
-            }}
+            onStartDateChange={(date) =>
+              onUpdate(index, { ...work, start: date })
+            }
+            onEndDateChange={(date) => onUpdate(index, { ...work, end: date })}
           />
         </div>
 
@@ -140,12 +120,9 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
           <Textarea
             id={`work-description-${index}`}
             value={work.description}
-            onChange={(e) => {
-              onUpdate(index, {
-                ...work,
-                description: e.target.value,
-              });
-            }}
+            onChange={(e) =>
+              onUpdate(index, { ...work, description: e.target.value })
+            }
             placeholder='Description'
             rows={3}
             required
@@ -154,4 +131,4 @@ export const WorkExperienceField: React.FC<WorkExperienceFieldProps> = ({
       </div>
     </div>
   );
-};
+}

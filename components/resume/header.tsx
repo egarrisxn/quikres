@@ -1,17 +1,19 @@
 import { useMemo } from "react";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
-import { GitHubIcon, LinkedInIcon, XIcon } from "../icons";
 import { ResumeDataSchemaType } from "@/lib/resumeSchema";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { GitHubIcon, LinkedInIcon, XIcon } from "../icons";
 
-interface SocialButtonProps {
+function SocialButton({
+  href,
+  icon: Icon,
+  label,
+}: {
   href: string;
   icon: React.ElementType;
   label: string;
-}
-
-function SocialButton({ href, icon: Icon, label }: SocialButtonProps) {
+}) {
   return (
     <Button className='size-6.5' size='icon' asChild>
       <a

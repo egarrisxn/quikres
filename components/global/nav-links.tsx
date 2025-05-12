@@ -5,12 +5,9 @@ import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { CheckIcon, MoonIcon, RepeatIcon, SunIcon } from "lucide-react";
+import { useThemeConfig } from "@/hooks/use-theme-config";
 import { BASE_COLORS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { useThemeConfig } from "@/hooks/use-theme-config";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Skeleton } from "./ui/skeleton";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,11 +17,14 @@ import {
   NavigationMenuTrigger,
   NavigationMenuListItem,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "../ui/navigation-menu";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
+import { Skeleton } from "../ui/skeleton";
 
 const PUBLIC_NAV = [
   {
-    title: "Login",
+    title: "Sign In",
     href: "/sign-in",
     description: "Sign in to create your site!",
   },
@@ -37,18 +37,18 @@ const PUBLIC_NAV = [
 
 const PRIVATE_NAV = [
   {
-    title: "Clerk Dashboard",
-    href: "/dashboard",
-    description: "Where user details live",
-  },
-  {
     title: "Edit/Preview Resume",
     href: "/preview",
     description: "Finalize your website here",
   },
+  {
+    title: "Clerk Dashboard",
+    href: "/dashboard",
+    description: "Where user details live",
+  },
 ];
 
-export function NavLinks() {
+export default function NavLinks() {
   const { activeTheme, setActiveTheme } = useThemeConfig();
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme: theme } = useTheme();
@@ -64,7 +64,7 @@ export function NavLinks() {
           {PRIVATE_NAV.length > 0 && (
             <NavigationMenuItem>
               <NavigationMenuTrigger>Helpful Links</NavigationMenuTrigger>
-              <NavigationMenuContent className='x'>
+              <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
                 <div className='w-64 p-2'>
                   <ul className='grid grid-cols-1 gap-3'>
                     {PRIVATE_NAV.map((navLink) => (
@@ -86,7 +86,7 @@ export function NavLinks() {
           {PUBLIC_NAV.length > 0 && (
             <NavigationMenuItem>
               <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
                 <div className='w-64 p-2'>
                   <ul className='grid grid-cols-1 gap-3'>
                     {PUBLIC_NAV.map((navLink) => (
@@ -116,7 +116,7 @@ export function NavLinks() {
         </SignedOut>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Theme</NavigationMenuTrigger>
-          <NavigationMenuContent className='x'>
+          <NavigationMenuContent className='bg-secondary'>
             <div className='w-64 p-2'>
               <div className='w-full'>
                 <div className='flex items-start pt-4 md:pt-0'>
@@ -124,7 +124,7 @@ export function NavLinks() {
                     <div className='leading-none font-semibold tracking-tight'>
                       Theme Library
                     </div>
-                    <div className='text-muted-foreground text-xs'>
+                    <div className='text-secondary-foreground text-xs'>
                       Choose the perfect theme and mode for your website.
                     </div>
                   </div>
