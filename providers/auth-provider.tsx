@@ -1,11 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { SITE_URL } from "@/lib/constants";
 
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
-
-export function AuthProvider({ children }: AuthProviderProps) {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
       appearance={{
