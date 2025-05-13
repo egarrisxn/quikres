@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/constants";
 import { getAllPublicUsernamesWithLiveResume } from "@/lib/actions";
 import { getUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: SITE_URL,
+      url: "https://quikres.vercel.app",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

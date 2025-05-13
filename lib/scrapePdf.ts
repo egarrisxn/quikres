@@ -24,7 +24,6 @@ export async function scrapePdf({
       throw new Error("No PDF body received from S3.");
     }
 
-    // Convert stream to buffer
     const chunks: Buffer[] = [];
     for await (const chunk of data.Body as any) {
       chunks.push(Buffer.from(chunk));

@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { searchParams } = new URL(request.url);
 
-    // Get data from resume
     const name = resume?.resumeData?.header?.name;
     const role = resume?.resumeData?.header?.subheader;
     const location = resume?.resumeData?.header?.location;
@@ -34,7 +33,6 @@ export async function GET(request: NextRequest) {
             position: "relative",
           }}
         >
-          {/* Logo and Location */}
           <div
             style={{
               display: "flex",
@@ -69,7 +67,6 @@ export async function GET(request: NextRequest) {
             </div>
           </div>
 
-          {/* Main Content */}
           <div
             style={{
               display: "flex",
@@ -78,7 +75,6 @@ export async function GET(request: NextRequest) {
               height: "480px",
             }}
           >
-            {/* Left side - Text content */}
             <div
               style={{
                 display: "flex",
@@ -113,7 +109,6 @@ export async function GET(request: NextRequest) {
               </p>
             </div>
 
-            {/* Right side - Profile image */}
             <div
               style={{
                 width: "40%",
@@ -135,7 +130,6 @@ export async function GET(request: NextRequest) {
             </div>
           </div>
 
-          {/* Website URL at bottom */}
           <div
             style={{
               position: "absolute",

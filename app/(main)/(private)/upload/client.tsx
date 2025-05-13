@@ -57,8 +57,8 @@ export default function UploadClient() {
 
   return (
     <section className='grid min-h-[80dvh] w-full place-items-center'>
-      <div className='max-w-lg space-y-6 py-8 text-center lg:pt-0 lg:pb-16 xl:pb-24 2xl:pb-56'>
-        <h1 className='font-base px-4 text-base sm:px-6 lg:px-8 2xl:px-10'>
+      <div className='max-w-lg space-y-6 px-4 pb-16 text-center'>
+        <h1 className='font-base px-6 text-base'>
           Upload a PDF of your resume to generate your personal site. You may
           modify your site before publishing it.
         </h1>
@@ -93,8 +93,8 @@ export default function UploadClient() {
             description={
               <span className='text-secondary-foreground/60 text-center text-xs font-light'>
                 {fileState.status !== "empty"
-                  ? `${(fileState.file.size / 1024 / 1024).toFixed(2)} MB`
-                  : "Must be in PDF format"}
+                  ? "Press Upload PD' to begin!"
+                  : "Must be in PDF format."}
               </span>
             }
             isUploading={uploadResumeMutation.isPending}
@@ -120,7 +120,7 @@ export default function UploadClient() {
             ) : (
               <>
                 <Sparkles className='mr-0.5 size-6' />
-                Generate Now!
+                Upload PDF
               </>
             )}
           </Button>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { CheckIcon, MoonIcon, RepeatIcon, SunIcon } from "lucide-react";
@@ -12,11 +11,9 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuListItem,
-  navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
@@ -24,27 +21,32 @@ import { Skeleton } from "../ui/skeleton";
 
 const PUBLIC_NAV = [
   {
-    title: "Sign In",
-    href: "/sign-in",
-    description: "Sign in to create your site!",
-  },
-  {
     title: "Sign Up",
     href: "/sign-up",
-    description: "Sign up for free to begin!",
+    description: "Sign up for free today!",
+  },
+  {
+    title: "Sign In",
+    href: "/sign-in",
+    description: "Sign in to continue!",
   },
 ];
 
 const PRIVATE_NAV = [
   {
-    title: "Edit/Preview Resume",
+    title: "Upload Resume",
+    href: "/upload",
+    description: "Upload your resume here",
+  },
+  {
+    title: "Preview Website",
     href: "/preview",
     description: "Finalize your website here",
   },
   {
     title: "Clerk Dashboard",
     href: "/dashboard",
-    description: "Where user details live",
+    description: "See your Clerk data here",
   },
 ];
 
@@ -61,91 +63,79 @@ export default function NavLinks() {
     <NavigationMenu>
       <NavigationMenuList>
         <SignedIn>
-          {PRIVATE_NAV.length > 0 && (
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Helpful Links</NavigationMenuTrigger>
-              <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
-                <div className='w-64 p-2'>
-                  <ul className='grid grid-cols-1 gap-3'>
-                    {PRIVATE_NAV.map((navLink) => (
-                      <NavigationMenuListItem
-                        key={navLink.title}
-                        title={navLink.title}
-                        href={navLink.href}
-                      >
-                        {navLink.description}
-                      </NavigationMenuListItem>
-                    ))}
-                  </ul>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          )}
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Links</NavigationMenuTrigger>
+            <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
+              <div className='w-52 p-2 xl:w-60'>
+                <ul className='grid grid-cols-1 space-y-3'>
+                  {PRIVATE_NAV.map((navLink) => (
+                    <NavigationMenuListItem
+                      key={navLink.title}
+                      title={navLink.title}
+                      href={navLink.href}
+                    >
+                      {navLink.description}
+                    </NavigationMenuListItem>
+                  ))}
+                </ul>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
         </SignedIn>
+
         <SignedOut>
-          {PUBLIC_NAV.length > 0 && (
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-              <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
-                <div className='w-64 p-2'>
-                  <ul className='grid grid-cols-1 gap-3'>
-                    {PUBLIC_NAV.map((navLink) => (
-                      <NavigationMenuListItem
-                        key={navLink.title}
-                        title={navLink.title}
-                        href={navLink.href}
-                      >
-                        {navLink.description}
-                      </NavigationMenuListItem>
-                    ))}
-                  </ul>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          )}
-          <NavigationMenuItem asChild>
-            <Link href='/help' passHref>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                Help
-              </NavigationMenuLink>
-            </Link>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
+            <NavigationMenuContent className='bg-secondary text-secondary-foreground'>
+              <div className='w-52 p-2 xl:w-60'>
+                <ul className='grid grid-cols-1 space-y-3'>
+                  {PUBLIC_NAV.map((navLink) => (
+                    <NavigationMenuListItem
+                      key={navLink.title}
+                      title={navLink.title}
+                      href={navLink.href}
+                    >
+                      {navLink.description}
+                    </NavigationMenuListItem>
+                  ))}
+                </ul>
+              </div>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </SignedOut>
+
         <NavigationMenuItem>
           <NavigationMenuTrigger>Theme</NavigationMenuTrigger>
           <NavigationMenuContent className='bg-secondary'>
-            <div className='w-64 p-2'>
+            <div className='w-52 p-2 xl:w-60'>
               <div className='w-full'>
-                <div className='flex items-start pt-4 md:pt-0'>
+                <div className='flex items-start pt-4 pb-1.5 md:pt-0'>
                   <div className='space-y-1.5'>
                     <div className='leading-none font-semibold tracking-tight'>
                       Theme Library
                     </div>
-                    <div className='text-secondary-foreground text-xs'>
+                    <div className='text-secondary-foreground pr-1 text-xs md:pr-0'>
                       Choose the perfect theme and mode for your website.
                     </div>
                   </div>
                   <Button
                     variant='ghost'
                     size='icon'
-                    className='rounded-base ml-auto'
+                    className='rounded-base ml-auto bg-transparent hover:bg-transparent'
                     onClick={() => setTheme("system")}
                   >
                     <RepeatIcon />
                     <span className='sr-only'>Reset</span>
                   </Button>
                 </div>
-                <div className='flex flex-1 flex-col gap-2 md:gap-4'>
+                <div className='flex flex-1 flex-col gap-2 pb-1.5 md:gap-4'>
                   <div className='space-y-1.5'>
                     <Label className='text-xs'>Color</Label>
                     <div className='flex flex-col gap-1.5'>
                       {BASE_COLORS.map((color) =>
                         mounted ? (
                           <Button
-                            variant={"outline"}
+                            variant='outline'
                             size='sm'
                             key={color.name}
                             onClick={() => setActiveTheme(color.name)}
@@ -187,7 +177,7 @@ export default function NavLinks() {
                       {mounted ? (
                         <>
                           <Button
-                            variant={"outline"}
+                            variant='outline'
                             size='sm'
                             onClick={() =>
                               setTheme(theme === "dark" ? "light" : "dark")
@@ -201,7 +191,7 @@ export default function NavLinks() {
                             Light
                           </Button>
                           <Button
-                            variant={"outline"}
+                            variant='outline'
                             size='sm'
                             onClick={() =>
                               setTheme(theme === "light" ? "dark" : "light")

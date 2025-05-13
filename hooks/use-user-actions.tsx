@@ -4,7 +4,6 @@ import { Resume, ResumeData } from "@/lib/actions";
 import { ResumeDataSchema } from "@/lib/resumeSchema";
 import { PublishStatuses } from "@/components/preview/preview-bar";
 
-// Fetch resume data
 const fetchResume = async (): Promise<{
   resume: Resume | undefined;
 }> => {
@@ -49,7 +48,6 @@ export function useUserActions() {
   const queryClient = useQueryClient();
   const { uploadToS3 } = useS3Upload();
 
-  // Query for fetching resume data
   const resumeQuery = useQuery({
     queryKey: ["resume"],
     queryFn: fetchResume,
@@ -68,7 +66,6 @@ export function useUserActions() {
       },
       body: JSON.stringify(newResume),
     });
-
     if (!response.ok) {
       const error = await response.json();
       return Promise.reject(new Error(error));
@@ -83,21 +80,17 @@ export function useUserActions() {
       },
       body: JSON.stringify({ username: newUsername }),
     });
-
     if (!response.ok) {
       const error = await response.json();
       return Promise.reject(error);
     }
-
     return {
       success: true,
     };
   };
 
-  // Update resume data in Upstash
   const uploadFileResume = async (file: File) => {
     const fileOnS3 = await uploadToS3(file);
-
     const newResume: Resume = {
       file: {
         name: file.name,
@@ -109,7 +102,6 @@ export function useUserActions() {
       resumeData: undefined,
       status: "draft",
     };
-
     queryClient.setQueryData<{ resume: Resume | undefined }>(
       ["resume"],
       (oldData) => ({
@@ -117,20 +109,16 @@ export function useUserActions() {
         resume: newResume,
       })
     );
-
     await internalResumeUpdate(newResume);
   };
 
-  // Mutation for updating resume
   const uploadResumeMutation = useMutation({
     mutationFn: uploadFileResume,
     onSuccess: () => {
-      // Invalidate and refetch resume data
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },
   });
 
-  // Mutation for toggling status of publishment
   const toggleStatusMutation = useMutation({
     mutationFn: async (newPublishStatus: PublishStatuses) => {
       if (!resumeQuery.data?.resume) return;
@@ -140,49 +128,36 @@ export function useUserActions() {
       });
     },
     onSuccess: () => {
-      // Invalidate and refetch resume data
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },
   });
 
-  // mutation to allow editing a username for a user_id, if it fails means that username is already taken
   const updateUsernameMutation = useMutation({
     mutationFn: internalUsernameUpdate,
     onSuccess: () => {
-      // Invalidate and refetch username data
       queryClient.invalidateQueries({ queryKey: ["username"] });
     },
     throwOnError: false,
   });
 
-  // Mutation for checking username availability
   const checkUsernameMutation = useMutation({
     mutationFn: checkUsernameAvailability,
     onSuccess: () => {
-      // Invalidate and refetch username availability data
       queryClient.invalidateQueries({ queryKey: ["username-availability"] });
     },
   });
 
-  // Function to save resume data changes
   const saveResumeDataChanges = async (newResumeData: ResumeData) => {
-    // Validate the resume data using Zod schema
     try {
-      // Validate the resume data
       ResumeDataSchema.parse(newResumeData);
-
-      // If validation passes, update the resume
       if (!resumeQuery.data?.resume) {
         throw new Error("No resume found to update");
       }
-
       const updatedResume: Resume = {
         ...resumeQuery.data.resume,
         resumeData: newResumeData,
       };
-
       await internalResumeUpdate(updatedResume);
-
       return { success: true };
     } catch (error) {
       if (error instanceof Error) {
@@ -192,11 +167,9 @@ export function useUserActions() {
     }
   };
 
-  // Mutation for saving resume data changes
   const saveResumeDataMutation = useMutation({
     mutationFn: saveResumeDataChanges,
     onSuccess: () => {
-      // Invalidate and refetch resume data
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },
   });

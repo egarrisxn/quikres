@@ -42,22 +42,20 @@ export default function MainLayout({
             <a
               target='_blank'
               rel='noopener noreferrer'
-              href='https://x.com/eg__xo'
+              href='https://github.com/egarrisxn/quikres'
             >
               <GitHubIcon className='size-4' />
               <span className='sr-only'>X</span>
             </a>
           </Button>
-
-          <Button asChild variant='link' size='link'>
-            <a
-              target='_blank'
-              rel='noopener noreferrer'
-              href='https://quikres.vercel.app'
-            >
-              Quik|Res
-            </a>
-          </Button>
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://quikres.vercel.app'
+            className='text-background text-shadow-foreground dark:text-foreground text-sm font-black tracking-tight text-shadow-lg dark:text-shadow-none'
+          >
+            Quik|Res
+          </a>
         </div>
       </footer>
     </div>

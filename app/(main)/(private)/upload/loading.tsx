@@ -1,5 +1,5 @@
 import { Loading } from "@/components/ui/loading";
 
 export default function LoadingUpload() {
-  return <Loading message='Loading upload..' />;
+  return <Loading message='Loading Upload..' />;
 }

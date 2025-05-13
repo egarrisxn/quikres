@@ -38,8 +38,8 @@ export function Dropzone({
     <div
       {...getRootProps()}
       className={cn(
-        "rounded-base border-primary relative flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed p-16 text-center transition-colors",
-        isDragActive && "border-primary bg-secondary/5",
+        "border-border shadow-base rounded-base relative flex cursor-pointer flex-col items-center justify-center gap-2 border-2 p-16 text-center transition-colors",
+        isDragActive && "border-secondary bg-muted-foreground/80",
         (disabled || isUploading) && "cursor-not-allowed opacity-60",
         className
       )}
@@ -47,32 +47,34 @@ export function Dropzone({
       <input {...getInputProps()} />
 
       {isDragActive && (
-        <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
-          <div className='animate-bounce p-4'>
-            <FileUp className='text-primary size-16' />
+        <div className='bg-muted-foreground/80 absolute inset-0 z-10 flex items-center justify-center'>
+          <div className='p-4'>
+            <FileUp className='text-foreground size-16' />
           </div>
         </div>
       )}
 
       {isUploading && (
-        <div className='bg-secondary/80 absolute inset-0 z-10 flex items-center justify-center'>
+        <div className='bg-muted-foreground/80 absolute inset-0 z-10 flex items-center justify-center'>
           <Spinner className='size-12' />
         </div>
       )}
 
       {files.length > 0 ? (
         <div className='flex flex-col items-center gap-2'>
-          <div className='rounded-base bg-secondary/80 p-3'>{icon}</div>
+          <div className='rounded-base bg-secondary-foreground/90 p-3'>
+            {icon}
+          </div>
           <div className='font-base mt-2 text-lg'>{files[0].name}</div>
-          <p className='text-secondary-foreground/80 text-sm'>
-            {(files[0].size / 1024 / 1024).toFixed(2)} MB
+          <p className='text-secondary-foreground text-sm'>
+            Press Upload PDF to begin!
           </p>
         </div>
       ) : (
         <>
-          <div className='rounded-base bg-secondary/80 p-3'>{icon}</div>
+          <div className='rounded-base bg-secondary/90 p-3'>{icon}</div>
           <h2 className='font-base mt-2 text-lg'>{title}</h2>
-          <p className='text-secondary-foreground/80 text-sm'>{description}</p>
+          <p className='text-secondary-foreground text-sm'>{description}</p>
         </>
       )}
     </div>

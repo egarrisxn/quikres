@@ -16,6 +16,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           colorInputBackground: "#e5e7eb",
         },
       }}
+      signInUrl='/sign-in'
+      signUpUrl='/sign-up'
     >
       {children}
     </ClerkProvider>
