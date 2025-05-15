@@ -22,45 +22,49 @@ export async function GET(request: NextRequest) {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#F5F5F5",
-            padding: "50px 100px 100px 100px",
+            backgroundImage:
+              "linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%)",
             position: "relative",
           }}
         >
           <div
             style={{
               display: "flex",
-              width: "100%",
-              height: "560px",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              padding: "0px 50px 50px 50px",
+              width: "auto",
+              maxWidth: 1050,
             }}
           >
             <div
               style={{
                 display: "flex",
+                flexWrap: "wrap",
                 flexDirection: "column",
                 justifyContent: "center",
-                width: "60%",
-                paddingRight: "40px",
+                width: "50%",
               }}
             >
-              <h1
+              <div
                 style={{
-                  fontSize: "60px",
+                  fontSize: "48px",
                   fontWeight: "900",
-                  color: "#222",
-                  margin: "0 0 6px 0",
-                  lineHeight: 1.1,
+                  margin: "0 0 4px 0",
+                  letterSpacing: -3,
+                  lineHeight: 1.2,
                 }}
               >
                 {name}
-              </h1>
+              </div>
               <p
                 style={{
-                  fontSize: "32px",
+                  fontSize: "26px",
                   fontWeight: "700",
                   color: "#444",
+                  letterSpacing: -2,
+                  lineHeight: 1.2,
                   margin: "0 0 8px 4px",
-                  lineHeight: 1.4,
                 }}
               >
                 {role && role?.length > 90
@@ -69,10 +73,10 @@ export async function GET(request: NextRequest) {
               </p>
               <div
                 style={{
-                  fontSize: "20px",
+                  fontSize: "16px",
                   color: "#666",
-                  margin: "0 0 24px 4px",
                   lineHeight: 1.4,
+                  margin: "0 0 20px 4px",
                 }}
               >
                 {location}
@@ -82,8 +86,9 @@ export async function GET(request: NextRequest) {
                   fontSize: "20px",
                   fontWeight: "900",
                   color: "#222",
-                  margin: "0 0 60px 4px",
+                  letterSpacing: -1,
                   lineHeight: 1.1,
+                  margin: "0 0 80px 4px",
                 }}
               >
                 {website}
@@ -107,7 +112,6 @@ export async function GET(request: NextRequest) {
             </div>
             <div
               style={{
-                width: "40%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
