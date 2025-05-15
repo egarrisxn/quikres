@@ -50,7 +50,7 @@ export default function UploadClient() {
   };
 
   if (resumeQuery.isLoading) {
-    return <Loading message='Loading Upload..' />;
+    return <Loading message='Loading' />;
   }
 
   const isUpdating = resumeQuery.isPending || uploadResumeMutation.isPending;
@@ -93,7 +93,7 @@ export default function UploadClient() {
             description={
               <span className='text-secondary-foreground/60 text-center text-xs font-light'>
                 {fileState.status !== "empty"
-                  ? "Press Upload PD' to begin!"
+                  ? "Press Upload PDF to begin!"
                   : "Must be in PDF format."}
               </span>
             }

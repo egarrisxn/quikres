@@ -38,8 +38,8 @@ export default function ResumeCarousel() {
                 src={image.src}
                 alt={image.name}
                 width='540'
-                height='675'
-                className='rounded-base pointer-events-none flex h-fit w-full object-cover'
+                height='650'
+                className='pointer-events-none flex h-fit w-full object-cover'
               />
             </div>
           </CarouselItem>

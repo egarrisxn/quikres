@@ -17,7 +17,7 @@ function EducationItem({
   return (
     <div className='flex flex-col gap-1'>
       <div>
-        <div className='flex flex-col justify-between gap-2 text-base sm:flex-row sm:items-center'>
+        <div className='xs:text-base flex flex-col justify-between gap-2 text-sm sm:flex-row sm:items-center'>
           <h3
             className='text-primary font-bold'
             id={`education-${school.toLowerCase().replace(/\s+/g, "-")}`}
@@ -35,7 +35,7 @@ function EducationItem({
         </div>
       </div>
       <div
-        className='text-foreground/90 @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1 px-0 text-sm font-semibold has-data-[slot=card-action]:grid-cols-[1fr_auto] print:text-[.75rem] [.border-b]:pb-6'
+        className='text-foreground/90 xs:text-sm @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1 px-0 text-xs font-semibold has-data-[slot=card-action]:grid-cols-[1fr_auto] print:text-[.75rem] [.border-b]:pb-6'
         aria-labelledby={`education-${school
           .toLowerCase()
           .replace(/\s+/g, "-")}`}

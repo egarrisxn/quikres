@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import { BASE_URL } from "@/lib/constants";
 import ThemeDropdown from "@/components/global/theme-dropdown";
 import { FinalResume } from "@/components/resume/final-resume";
 import { getUserData } from "./user";
@@ -17,27 +17,27 @@ export async function generateMetadata({
 
   if (!user_id) {
     return {
-      title: "User Not Found - Quik|Res",
+      title: "User Not Found: Quik|Res",
       description: "This user profile could not be found on Quikres",
     };
   }
 
   if (!resume?.resumeData || resume.status !== "live") {
     return {
-      title: "Resume Not Found - Quik|Res",
+      title: "Resume Not Found: Quik|Res",
       description: "This resume could not be found on Quikres",
     };
   }
 
   return {
-    title: `${resume.resumeData.header.name}'s Resume - Quik|Res`,
+    title: `${resume.resumeData.header.name}: Quik|Res`,
     description: resume.resumeData.summary,
     openGraph: {
-      title: `${resume.resumeData.header.name}'s Resume - Quik|Res`,
+      title: `${resume.resumeData.header.name}: Quik|Res`,
       description: resume.resumeData.summary,
       images: [
         {
-          url: `https://quikres.vercel.app/${username}/og`,
+          url: `${BASE_URL}/${username}/og`,
           width: 1200,
           height: 630,
           alt: "Quik|Res Profile",
@@ -93,12 +93,14 @@ export default async function ProfilePage({
           />
         </section>
         <footer className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'>
-          <Link
-            href={`/?ref=${username}`}
-            className='bg-foreground/5 rounded-base p-0.5 shadow-sm'
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://quikres.vercel.app'
+            className='text-background text-shadow-foreground dark:text-foreground text-sm font-black tracking-tight text-shadow-lg dark:text-shadow-none'
           >
-            <img src='/icons/icon.svg' alt='logo' width={24} height={24} />
-          </Link>
+            Quik|Res
+          </a>
         </footer>
       </div>
     </>

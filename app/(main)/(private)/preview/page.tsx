@@ -84,7 +84,7 @@ export default async function Preview() {
 
   return (
     <>
-      <Suspense fallback={<Loading message='Loading Preview..' />}>
+      <Suspense fallback={<Loading message='Loading' />}>
         <LLMProcessing userId={userId} />
       </Suspense>
     </>

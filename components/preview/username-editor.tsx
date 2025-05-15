@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useUserActions } from "@/hooks/use-user-actions";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MAX_USERNAME_LENGTH } from "@/lib/constants";
@@ -10,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
@@ -18,7 +18,6 @@ import {
   Drawer,
   DrawerContent,
   DrawerDescription,
-  DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Label } from "@/components/ui/label";
@@ -173,15 +172,14 @@ export default function UsernameEditor({
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent className='sm:max-w-[425px]'>
-          <DialogHeader>
+          <VisuallyHidden asChild>
             <DialogTitle id='edit-username-title'>Edit Username</DialogTitle>
-            <DialogDescription
-              className='sr-only'
-              id='edit-username-description'
-            >
+          </VisuallyHidden>
+          <VisuallyHidden asChild>
+            <DialogDescription id='edit-username-description'>
               This is where you can edit your username.
             </DialogDescription>
-          </DialogHeader>
+          </VisuallyHidden>
           <UsernameContent
             initialUsername={initialUsername}
             onClose={onClose}
@@ -195,12 +193,14 @@ export default function UsernameEditor({
   return (
     <Drawer open={isOpen} onOpenChange={onClose}>
       <DrawerContent>
-        <DrawerHeader>
+        <VisuallyHidden asChild>
           <DrawerTitle id='edit-username-title'>Edit Username</DrawerTitle>
-          <DrawerDescription className='sr-only' id='edit-username-description'>
+        </VisuallyHidden>
+        <VisuallyHidden asChild>
+          <DrawerDescription id='edit-username-description'>
             This is where you can edit your username.
           </DrawerDescription>
-        </DrawerHeader>
+        </VisuallyHidden>
         <UsernameContent
           initialUsername={initialUsername}
           onClose={onClose}

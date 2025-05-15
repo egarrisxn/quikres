@@ -51,7 +51,7 @@ export function PreviewBar({
               {prefix}
             </p>
           </div>
-          <div className='rounded-base border-input flex w-56 flex-row items-center overflow-hidden bg-white text-black md:w-72'>
+          <div className='rounded-base border-border shadow-base flex w-56 flex-row items-center overflow-hidden border-1 bg-white text-black md:w-72'>
             <span className='w-fit flex-1 truncate border-none bg-transparent px-3 py-1.5 text-sm tracking-tight outline-hidden focus:ring-0 md:tracking-normal'>
               {initialUsername}
             </span>

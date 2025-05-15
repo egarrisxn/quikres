@@ -10,7 +10,10 @@ export function Summary({
 }) {
   return (
     <Section className={className}>
-      <h2 className='text-foreground text-xl font-bold' id='about-section'>
+      <h2
+        className='text-foreground xs:text-xl text-lg font-bold'
+        id='about-section'
+      >
         About
       </h2>
       <div

@@ -5,9 +5,7 @@ import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
-  DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -39,11 +37,8 @@ export function AddSkillDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className='sr-only'>Add New Skill</DialogTitle>
-          <DialogDescription>Add New Skill</DialogDescription>
-        </DialogHeader>
+      <DialogContent aria-describedby={undefined}>
+        <DialogTitle is='add-new-skill'>Add New Skill</DialogTitle>
         <form onSubmit={handleSubmit} className='space-y-4'>
           <div className='space-y-2'>
             <Label htmlFor='skill'>Skill Name</Label>

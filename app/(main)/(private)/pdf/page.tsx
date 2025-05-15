@@ -51,7 +51,7 @@ export default async function Pdf() {
   }
 
   return (
-    <Suspense fallback={<Loading message='Loading PDF..' />}>
+    <Suspense fallback={<Loading message='Loading' />}>
       <ProcessPdf userId={userId} />
     </Suspense>
   );

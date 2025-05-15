@@ -43,28 +43,28 @@ export function WorkExperience({
               key={item.company + item.location + item.title}
               className='flex flex-col items-start justify-start gap-1 print:mb-4'
             >
-              <div className='flex flex-wrap items-start justify-between gap-2 self-stretch'>
-                <div className='flex flex-wrap items-center justify-start gap-2'>
-                  <p className='text-primary text-left text-base font-bold'>
+              <div className='flex flex-wrap items-start justify-between gap-1 self-stretch'>
+                <div className='xs:flex-row xs:items-center xs:flex-wrap flex flex-col items-start justify-start gap-1'>
+                  <p className='text-primary xs:text-base text-left text-sm font-bold'>
                     {item.title}
                   </p>
-                  <div className='rounded-base bg-secondary/40 text-foreground/80 relative flex items-center justify-center overflow-hidden px-[6px] py-0.5'>
-                    <p className='text-center text-[10px] font-semibold'>
+                  <div className='xs:rounded-base xs:bg-secondary/40 text-foreground/80 xs:px-[6px] xs:justify-center xs:items-center relative flex items-start justify-start overflow-hidden py-0.5'>
+                    <p className='xs:text-center text-left text-[10px] font-semibold'>
                       {item.location}
                     </p>
                   </div>
                 </div>
-                <p className='text-foreground/90 font-base text-right text-sm'>
+                <p className='text-foreground/90 font-base xs:text-sm xs:items-center flex-1 text-right text-xs'>
                   {item.formattedDate}
                 </p>
               </div>
               <div className='relative flex flex-col items-start justify-start gap-1.5'>
-                <p className='text-foreground flex flex-wrap gap-1 self-stretch text-left text-sm font-semibold capitalize'>
+                <p className='text-foreground xs:text-sm flex flex-wrap gap-1 self-stretch text-left text-xs font-semibold capitalize'>
                   <span>{item.companyLower}</span>
                   {item.company && item.contract && <span>·</span>}
                   <span>{item.contract}</span>
                 </p>
-                <p className='text-foreground/90 font-base self-stretch text-left text-sm'>
+                <p className='text-foreground/90 font-base xs:text-sm self-stretch text-left text-xs'>
                   {item.description}
                 </p>
               </div>

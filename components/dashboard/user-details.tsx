@@ -32,7 +32,7 @@ export function UserDetails() {
 
   return (
     <div className='relative'>
-      <div className='bg-secondary text-secondary-foreground rounded-base border-border shadow-base mx-auto max-w-[22rem] border-2 p-8 sm:max-w-[28rem] lg:max-w-[34rem] 2xl:max-w-[40rem]'>
+      <div className='text-secondary-foreground mx-auto max-w-xl p-8'>
         <div className='relative flex w-full items-center justify-center'>
           <img
             src={user.imageUrl}
@@ -40,10 +40,10 @@ export function UserDetails() {
             className='border-background size-24 rounded-full border-2'
           />
         </div>
-        <h2 className='text-secondary-foreground mt-4 mb-2 text-[0.9375rem] font-semibold'>
+        <h2 className='text-secondary-foreground mt-4 mb-2 text-base font-semibold'>
           User details
         </h2>
-        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
+        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2'>
           <Row desc='Email' value={user.emailAddresses[0].emailAddress}>
             <span className='sr-only'>Email</span>
           </Row>
@@ -57,10 +57,10 @@ export function UserDetails() {
             <span className='sr-only'>User ID</span>
           </Row>
         </div>
-        <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
+        <h2 className='text-secondary-foreground mt-6 mb-2 text-base font-semibold'>
           Session details
         </h2>
-        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
+        <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2'>
           <Row desc='Session ID' value={session.id}>
             <span className='sr-only'>Session ID</span>
           </Row>
@@ -82,7 +82,7 @@ export function UserDetails() {
         </div>
         {organization ? (
           <>
-            <h2 className='text-secondary-foreground mt-6 mb-2 text-[0.9375rem] font-semibold'>
+            <h2 className='text-secondary-foreground mt-6 mb-2 text-base font-semibold'>
               Organization detail
             </h2>
             <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
