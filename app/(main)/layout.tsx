@@ -13,9 +13,9 @@ export default function MainLayout({
 }) {
   return (
     <div className='grid min-h-[100dvh] w-full grid-rows-[auto_1fr_auto]'>
-      <header className='border-foreground/10 w-full border-b px-2 sm:px-4'>
-        <nav className='mx-auto flex h-18 w-full max-w-5xl items-center justify-between xl:px-8 2xl:max-w-6xl 2xl:px-12'>
-          <div className='xs:pl-2 flex items-center justify-start px-1 pb-1.5'>
+      <header className='xs:px-4 w-full'>
+        <nav className='border-foreground/5 mx-auto flex h-18 w-full max-w-7xl items-center justify-between border-b-1 px-2'>
+          <div className='flex items-center justify-start pb-1.5'>
             <Link
               href='/'
               className='text-background text-shadow-foreground dark:text-foreground text-xl font-black tracking-tight text-shadow-lg dark:text-shadow-none'
@@ -24,7 +24,7 @@ export default function MainLayout({
               <span className='xs:block hidden'>Quik|Res</span>
             </Link>
           </div>
-          <div className='xs:gap-2 flex flex-1 flex-row items-center justify-end gap-1'>
+          <div className='xs:gap-3 flex flex-1 flex-row items-center justify-end gap-1'>
             <SignedIn>
               <NavLinks />
               <UserButton />

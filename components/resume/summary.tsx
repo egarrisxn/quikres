@@ -1,4 +1,4 @@
-import { ResumeDataSchemaType } from "@/lib/resumeSchema";
+import { ResumeDataSchemaType } from "@/lib/resume-schema";
 import { Section } from "../ui/section";
 
 export function Summary({

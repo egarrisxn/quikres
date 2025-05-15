@@ -1,84 +1,82 @@
 "use client";
 
 import { useOrganization, useSession, useUser } from "@clerk/nextjs";
+import { motion } from "motion/react";
 import { formatDate, formatDateWithNumbers } from "@/lib/utils";
+import { DetailRow } from "@/components/dashboard/detail-row";
 
-function Row({
-  desc,
-  value,
-  children,
-}: {
-  desc: string;
-  value: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className='relative grid h-[2.125rem] grid-cols-2 items-center'>
-      <span className='block flex-shrink-0 text-xs font-semibold'>{desc}</span>
-      <span className='relative block font-mono text-xs'>
-        <span className='block w-full truncate'>{value}</span>
-        {children}
-      </span>
-    </div>
-  );
-}
-
-export function UserDetails() {
+export default function DashboardClient() {
   const { user } = useUser();
   const { session } = useSession();
   const { organization } = useOrganization();
 
   if (!user || !session) return null;
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
-    <div className='relative'>
-      <div className='text-secondary-foreground mx-auto max-w-xl p-8'>
-        <div className='relative flex w-full items-center justify-center'>
-          <img
-            src={user.imageUrl}
-            alt='user Image'
-            className='border-background size-24 rounded-full border-2'
-          />
-        </div>
+    <motion.div
+      className='mx-auto max-w-xl p-8'
+      initial='hidden'
+      animate='show'
+      variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+    >
+      <motion.section
+        className='mx-auto mb-6 flex items-center justify-center'
+        variants={fadeIn}
+      >
+        <img
+          src={user.imageUrl}
+          alt='user Image'
+          className='border-background size-32 rounded-full border-2'
+        />
+      </motion.section>
+      <motion.section variants={fadeIn}>
         <h2 className='text-secondary-foreground mt-4 mb-2 text-base font-semibold'>
           User details
         </h2>
         <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2'>
-          <Row desc='Email' value={user.emailAddresses[0].emailAddress}>
+          <DetailRow desc='Email' value={user.emailAddresses[0].emailAddress}>
             <span className='sr-only'>Email</span>
-          </Row>
-          <Row desc='Last signed in' value={formatDate(user.lastSignInAt!)}>
+          </DetailRow>
+          <DetailRow
+            desc='Last signed in'
+            value={formatDate(user.lastSignInAt!)}
+          >
             <span className='sr-only'>Last Signed In</span>
-          </Row>
-          <Row desc='Joined on' value={formatDate(user.createdAt!)}>
+          </DetailRow>
+          <DetailRow desc='Joined on' value={formatDate(user.createdAt!)}>
             <span className='sr-only'>Joined On</span>
-          </Row>
-          <Row desc='User ID' value={user.id}>
+          </DetailRow>
+          <DetailRow desc='User ID' value={user.id}>
             <span className='sr-only'>User ID</span>
-          </Row>
+          </DetailRow>
         </div>
         <h2 className='text-secondary-foreground mt-6 mb-2 text-base font-semibold'>
           Session details
         </h2>
         <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2'>
-          <Row desc='Session ID' value={session.id}>
+          <DetailRow desc='Session ID' value={session.id}>
             <span className='sr-only'>Session ID</span>
-          </Row>
-          <Row desc='Status' value={session.status}>
+          </DetailRow>
+          <DetailRow desc='Status' value={session.status}>
             <span className='sr-only'>Status</span>
-          </Row>
-          <Row
+          </DetailRow>
+          <DetailRow
             desc='Last active'
             value={formatDateWithNumbers(session.lastActiveAt)}
           >
             <span className='sr-only'>Last Active</span>
-          </Row>
-          <Row
+          </DetailRow>
+          <DetailRow
             desc='Session expiration'
             value={formatDateWithNumbers(session.expireAt)}
           >
             <span className='sr-only'>Session Expiration</span>
-          </Row>
+          </DetailRow>
         </div>
         {organization ? (
           <>
@@ -86,25 +84,28 @@ export function UserDetails() {
               Organization detail
             </h2>
             <div className='rounded-base border-background bg-secondary-foreground divide-secondary text-secondary divide-y border-2 px-2.5'>
-              <Row desc='Organization ID' value={organization.id}>
+              <DetailRow desc='Organization ID' value={organization.id}>
                 <span className='sr-only'>Organization ID</span>
-              </Row>
-              <Row desc='Name' value={organization.name}>
+              </DetailRow>
+              <DetailRow desc='Name' value={organization.name}>
                 <span className='sr-only'>Name</span>
-              </Row>
-              <Row desc='Members' value={String(organization.membersCount)}>
+              </DetailRow>
+              <DetailRow
+                desc='Members'
+                value={String(organization.membersCount)}
+              >
                 <span className='sr-only'>Members</span>
-              </Row>
-              <Row
+              </DetailRow>
+              <DetailRow
                 desc='Pending invitations'
                 value={String(organization.pendingInvitationsCount)}
               >
                 <span className='sr-only'>Pending Invitations</span>
-              </Row>
+              </DetailRow>
             </div>
           </>
         ) : null}
-      </div>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 }

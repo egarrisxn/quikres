@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import * as motion from "motion/react-client";
 import { BASE_URL } from "@/lib/constants";
 import ThemeDropdown from "@/components/global/theme-dropdown";
 import { FinalResume } from "@/components/resume/final-resume";
@@ -12,8 +13,7 @@ export async function generateMetadata({
   params: Promise<{ username: string }>;
 }): Promise<Metadata> {
   const { username } = await params;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { user_id, resume, clerkUser } = await getUserData(username);
+  const { user_id, resume } = await getUserData(username);
 
   if (!user_id) {
     return {
@@ -83,16 +83,31 @@ export default async function ProfilePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className='grid min-h-[100dvh] w-full grid-rows-[auto_1fr_auto]'>
-        <header className='mx-auto flex w-full max-w-3xl pt-1 pl-2 lg:pl-0'>
+        <motion.header
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className='mx-auto flex w-full max-w-3xl pt-1 pl-2 lg:pl-0'
+        >
           <ThemeDropdown />
-        </header>
-        <section className='flex flex-col'>
+        </motion.header>
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className='flex flex-col'
+        >
           <FinalResume
             resume={resume?.resumeData}
             profilePicture={profilePicture}
           />
-        </section>
-        <footer className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'>
+        </motion.section>
+        <motion.footer
+          className='mx-auto mt-12 mb-4 flex w-full items-center justify-center'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <a
             target='_blank'
             rel='noopener noreferrer'
@@ -101,7 +116,7 @@ export default async function ProfilePage({
           >
             Quik|Res
           </a>
-        </footer>
+        </motion.footer>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ export const FinalResume = ({
   profilePicture?: string;
 }) => {
   if (!resume) {
-    return <Loading message='Loading Resume..' />;
+    return <Loading message='Loading' />;
   }
 
   return (

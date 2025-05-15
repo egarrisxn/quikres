@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { getResume, storeResume } from "@/lib/actions";
-import { scrapePdf } from "@/lib/scrapePdf";
-import { deleteS3File } from "@/lib/deleteFile";
+import { scrapePdf } from "@/lib/scrape-pdf";
+import { deleteS3File } from "@/lib/delete-file";
 import { Loading } from "@/components/ui/loading";
 
 export default async function Pdf() {

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { upstashRedis } from "./redis";
-import { ResumeDataSchema } from "./resumeSchema";
+import { ResumeDataSchema } from "./resume-schema";
 import { PRIVATE_ROUTES } from "./constants";
 
 const REDIS_KEYS = {

@@ -1,6 +1,6 @@
 import { generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { ResumeDataSchema } from "./resumeSchema";
+import { ResumeDataSchema } from "./resume-schema";
 
 export const generateResumeObject = async (resumeText: string) => {
   try {

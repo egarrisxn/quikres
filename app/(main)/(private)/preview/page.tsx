@@ -7,7 +7,7 @@ import {
   getUsernameById,
   storeResume,
 } from "@/lib/actions";
-import { generateResumeObject } from "@/lib/generateResume";
+import { generateResumeObject } from "@/lib/generate-resume";
 import { MAX_USERNAME_LENGTH } from "@/lib/constants";
 import { Loading } from "@/components/ui/loading";
 import PreviewClient from "./client";

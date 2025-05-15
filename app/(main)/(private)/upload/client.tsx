@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { motion } from "motion/react";
 import { FileCheck2, Sparkles, Upload, X } from "lucide-react";
 import { useUserActions } from "@/hooks/use-user-actions";
 import {
@@ -22,7 +23,6 @@ type FileState =
 
 export default function UploadClient() {
   const router = useRouter();
-
   const { resumeQuery, uploadResumeMutation } = useUserActions();
   const [fileState, setFileState] = useState<FileState>({ status: "empty" });
 
@@ -57,12 +57,22 @@ export default function UploadClient() {
 
   return (
     <section className='grid min-h-[80dvh] w-full place-items-center'>
-      <div className='max-w-lg space-y-6 px-4 pb-16 text-center'>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className='max-w-lg space-y-6 px-4 pb-16 text-center'
+      >
         <h1 className='font-base px-6 text-base'>
           Upload a PDF of your resume to generate your personal site. You may
           modify your site before publishing it.
         </h1>
-        <div className='relative mx-2.5'>
+        <motion.section
+          className='relative mx-2.5'
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
           {fileState.status !== "empty" && (
             <button
               onClick={handleReset}
@@ -72,7 +82,6 @@ export default function UploadClient() {
               <X className='text-secondary-foreground/60 hover:text-destructive/60 size-4' />
             </button>
           )}
-
           <Dropzone
             accept={{ "application/pdf": [".pdf"] }}
             maxFiles={1}
@@ -103,9 +112,12 @@ export default function UploadClient() {
             }}
             onDropRejected={() => toast.error("Only PDF files are supported")}
           />
-        </div>
-
-        <div className='relative'>
+        </motion.section>
+        <motion.section
+          className='relative'
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+        >
           <Button
             size='default'
             className='h-10 px-4 py-2.5 2xl:h-11 2xl:px-6 2xl:py-3 2xl:text-xl'
@@ -136,8 +148,8 @@ export default function UploadClient() {
               </Tooltip>
             </TooltipProvider>
           )}
-        </div>
-      </div>
+        </motion.section>
+      </motion.div>
     </section>
   );
 }
