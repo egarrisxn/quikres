@@ -2,6 +2,8 @@
   "name": "quikres",
   "version": "1.0.0",
   "description": "Resume to website in less than a minute!",
+  "homepage": "https://quikres.vercel.app",
+  "author": "Ethan G. (https://egxo.dev)",
   "license": "MIT",
   "private": true,
   "keywords": [
