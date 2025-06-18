@@ -86,7 +86,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <meta name='apple-mobile-web-app-title' content={SITE_DATA.title} />
+      <head>
+        <meta name='apple-mobile-web-app-title' content={SITE_DATA.title} />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
