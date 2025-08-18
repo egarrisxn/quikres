@@ -6,19 +6,6 @@
   "author": "Ethan G. (https://egxo.dev)",
   "license": "MIT",
   "private": true,
-  "keywords": [
-    "typesctipt",
-    "javascript",
-    "next.js",
-    "react",
-    "tailwindcss",
-    "shadcn/ui",
-    "vercel",
-    "aws-s3",
-    "upstash-redis",
-    "tanstack-query",
-    "clerk"
-  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prebuild": "pnpm run lint",
