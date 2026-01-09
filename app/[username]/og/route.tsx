@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
               >
                 <img
                   src='https://quikres.vercel.app/icons/icon.png'
-                  alt='Quik|Res Logo'
+                  alt='QuikRes Logo'
                   style={{
                     width: "48px",
                     height: "48px",

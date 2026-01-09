@@ -1,4 +1,4 @@
-# Quik|Res
+# QuikRes
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![GitHub repo size](https://img.shields.io/github/repo-size/egarrisxn/quikres) ![GitHub last commit](https://img.shields.io/github/last-commit/egarrisxn/quikres)
 
@@ -6,9 +6,9 @@
 
 ## 🚀 What is QuikRes?
 
-**Quik|Res** lets you turn your resume into a beautiful, personal website, in under a minute. No paywalls. No ads. Just fast & free!
+**QuikRes** lets you turn your resume into a beautiful, personal website, in under a minute. No paywalls. No ads. Just fast & free!
 
-_**Note: This project was inspired by Self.so. Thanks for giving me the vision for Quik|Res.**_
+_**Note: This project was inspired by Self.so. Thanks for giving me the vision for QuikRes.**_
 
 ## 🛠️ Tech Stack
 
@@ -80,7 +80,7 @@ pnpm dev
 
 ## 🚀 Deploying
 
-The easiest way to deploy Quik|Res is with **Vercel**, the creators of Next.js. Smash the button below to begin.
+The easiest way to deploy QuikRes is with **Vercel**, the creators of Next.js. Smash the button below to begin.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 

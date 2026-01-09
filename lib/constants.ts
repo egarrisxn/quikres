@@ -19,11 +19,11 @@ export const SITE_DATA: {
   handle: string;
   locale: string;
 } = {
-  title: "Quik|Res",
+  title: "QuikRes",
   description: "A simple resume builder for everyone!",
   url: SITE_URL,
   og: `${SITE_URL}/images/og.png`,
-  alt: "A bright pink background with big 3D styled letters Q and D together to form the Quik|Res logo.",
+  alt: "A bright pink background with big 3D styled letters Q and D together to form the QuikRes logo.",
   handle: "@eg__xo",
   locale: "en_US",
 };

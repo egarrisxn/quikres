@@ -23,7 +23,7 @@ export default function Home() {
             </h1>
             <p className='text-muted-foreground mb-4 max-w-sm px-8 text-sm tracking-tight lg:px-0 lg:text-base xl:mb-6 2xl:max-w-md 2xl:text-lg'>
               Turn your old and boring resume into a fun and modern website
-              faster than ever before with Quik|Res!
+              faster than ever before with QuikRes!
             </p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

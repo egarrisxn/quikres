@@ -21,7 +21,7 @@ export default function MainLayout({
               className='text-background text-shadow-foreground dark:text-foreground text-xl font-black tracking-tight text-shadow-lg dark:text-shadow-none'
             >
               <span className='xs:hidden'>Q|R</span>
-              <span className='xs:block hidden'>Quik|Res</span>
+              <span className='xs:block hidden'>QuikRes</span>
             </Link>
           </div>
           <div className='xs:gap-3 flex flex-1 flex-row items-center justify-end gap-1'>
@@ -54,7 +54,7 @@ export default function MainLayout({
             href='https://quikres.vercel.app'
             className='text-background text-shadow-foreground dark:text-foreground text-sm font-black tracking-tight text-shadow-lg dark:text-shadow-none'
           >
-            Quik|Res
+            QuikRes
           </a>
         </div>
       </footer>

@@ -17,30 +17,30 @@ export async function generateMetadata({
 
   if (!user_id) {
     return {
-      title: "User Not Found: Quik|Res",
+      title: "User Not Found: QuikRes",
       description: "This user profile could not be found on Quikres",
     };
   }
 
   if (!resume?.resumeData || resume.status !== "live") {
     return {
-      title: "Resume Not Found: Quik|Res",
+      title: "Resume Not Found: QuikRes",
       description: "This resume could not be found on Quikres",
     };
   }
 
   return {
-    title: `${resume.resumeData.header.name}: Quik|Res`,
+    title: `${resume.resumeData.header.name}: QuikRes`,
     description: resume.resumeData.summary,
     openGraph: {
-      title: `${resume.resumeData.header.name}: Quik|Res`,
+      title: `${resume.resumeData.header.name}: QuikRes`,
       description: resume.resumeData.summary,
       images: [
         {
           url: `${BASE_URL}/${username}/og`,
           width: 1200,
           height: 630,
-          alt: "Quik|Res Profile",
+          alt: "QuikRes Profile",
         },
       ],
     },
@@ -114,7 +114,7 @@ export default async function ProfilePage({
             href='https://quikres.vercel.app'
             className='text-background text-shadow-foreground dark:text-foreground text-sm font-black tracking-tight text-shadow-lg dark:text-shadow-none'
           >
-            Quik|Res
+            QuikRes
           </a>
         </motion.footer>
       </div>
